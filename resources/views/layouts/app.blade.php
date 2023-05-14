@@ -26,7 +26,14 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+            <x-navigation-menu>
+                <!-- Pass the nav links from page to the nav menu component-->
+                <x-slot name="navlinks">
+                    @isset($navlinks)
+                        {{ $navlinks }}             
+                    @endif
+            </x-slot>
+            </x-navigation-menu>
 
             <!-- Page Heading -->
             @if (isset($header))

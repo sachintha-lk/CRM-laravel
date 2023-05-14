@@ -14,15 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('web.home');
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    
     Route::get('/dashboard', function () {
-        return view('dashboard');
+    
+        return view('dashboard.index');
     })->name('dashboard');
 });
+
+Route::get('/dashboard/manageusers', function () {
+    return view('dashboard.manage-users.index');
+})->name('manageusers');
