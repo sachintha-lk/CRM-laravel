@@ -29,6 +29,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/dashboard/manageusers', function () {
-    return view('dashboard.manage-users.index');
-})->name('manageusers');
+// Route::get('/dashboard/manageusers', function () {
+//     return view('dashboard.manage-users.index');
+// })->name('manageusers');
+
+
+Route::resource('dashboard/manageusers', App\Http\Controllers\UserController::class)->name('index','manageusers');
