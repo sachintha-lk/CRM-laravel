@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="relative">
-        <img class="object-cover" src="{{ asset('images\banner-salon.png') }}" alt="Banner image">
+        <img class="w-full" src="{{ asset('images\banner-salon.png') }}" alt="Banner image">
         <div class="absolute right-1 top-5 font-black text-pink-600 text-7xl">30% OFF <br>THIS SEASON</div>
     </div>
     <div class="text-center text-4xl font-semibold text-pink-500">Categories</div>
