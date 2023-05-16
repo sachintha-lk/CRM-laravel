@@ -3,8 +3,28 @@
         <img class="w-full" src="{{ asset('images\banner-salon.png') }}" alt="Banner image">
         <div class="absolute right-1 top-5 font-black text-pink-600 text-7xl">30% OFF <br>THIS SEASON</div>
     </div>
-    <div class="text-center text-4xl font-semibold text-pink-500">Categories</div>
+    <div class="text-center text-4xl font-semibold text-pink-500 m-2">Categories</div>
 
+    <div class="container flex gap-10 p-10 justify-center">
+      <div class="text-center gap-2">
+          <img class="w-60" src="{{ asset('images/hair.jpg')}}" alt="">
+          <span class="text-pink-500 text-2xl">Hair</span>   
+      </div>
+      <div class="text-center gap-2">
+        <img class="w-60" src="{{ asset('images/nails.jpg')}}" alt="">
+        <span class="text-pink-500 text-2xl">Nails</span>
+
+      </div>
+      <div class="text-center gap-2">
+        <img class="w-60" src="{{ asset('images/skin.jpg')}}" alt="">
+        <span class="text-pink-500 text-2xl">Skin</span>
+
+      </div>
+      <div class="text-center gap-2">
+        <img class="w-60" src="{{ asset('images/makeup.jpg')}}" alt="">
+        <span class="text-pink-500 text-2xl">Makeup</span>
+      </div>
+    </div>
     <footer class="relative bg-blueGray-200 pt-8 pb-6">
         <div class="container mx-auto px-4">
           <div class="flex flex-wrap text-left lg:text-left">
