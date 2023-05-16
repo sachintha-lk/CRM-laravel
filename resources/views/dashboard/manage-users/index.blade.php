@@ -14,7 +14,7 @@
           <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="pl-6 py-4 font-medium text-gray-900">Id</th>
-              <th scope="col" class="px-6 py-4 font-medium text-gray-900">Name</th>
+              <th scope="col" class="px-4 py-4 font-medium text-gray-900">User</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Role</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Actions</th>
@@ -25,7 +25,7 @@
             
             @foreach ($users as $user)
             <tr class="hover:bg-gray-50">
-                <td class="pl-6 py-">{{ $user->id }}</td>
+                <td class="pl-6 py-4">{{ $user->id }}</td>
 
                 <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div class="relative h-10 w-10">
@@ -42,8 +42,7 @@
                   </div>
                 </th>
                 <td class="px-6 py-4">
-                    {{-- TODO: Add status to the users table --}}
-                    {{-- @if($user->status == 1) 
+                     @if($user->status == true) 
                         <span
                         class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
                       >
@@ -60,7 +59,7 @@
                       </span>
                     
                         
-                    @endif --}}
+                    @endif 
                  
   
                   
@@ -69,6 +68,7 @@
                 <td class="px-6 py-4">{{ $user->role->name }}</td>
                 <td class="px-6 py-4">
                   <div class="flex gap-2">
+
                     {{-- <span
                       class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600"
                     >

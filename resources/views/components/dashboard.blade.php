@@ -14,6 +14,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> --}}
+            @if (session('errormsg'))
+                <div class="mb-4 font-medium text-sm text-red-600">
+                    {{ session('errormsg') }}
+                </div>
+            @endif
+    
             <div>
                 {{ $slot }}
             </div>
