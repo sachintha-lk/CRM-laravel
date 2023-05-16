@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table -> foreignId('role_id')->default(UserRolesEnum::Customer)->constrained('roles');
+            $table -> foreignId('role_id')->default(UserRolesEnum::Customer->value)->constrained('roles');
         });
     }
 

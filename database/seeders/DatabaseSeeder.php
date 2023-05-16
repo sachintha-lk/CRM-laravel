@@ -53,5 +53,44 @@ class DatabaseSeeder extends Seeder
             'role_id' => UserRolesEnum::Admin,
         ]);
 
+        // create mock customers
+        \App\Models\User::create([
+            'name' => 'Customer 1',
+            'email' => 'cust1@gmail.com',
+            'password' => Hash::make('custpassword'),
+            'role_id' => UserRolesEnum::Customer,
+        ]);
+        
+        \App\Models\User::create([
+            'name' => 'Customer 2',
+            'email' => 'cust2@gmail.com',
+            'password' => Hash::make('custpassword'),
+            'role_id' => UserRolesEnum::Customer,
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Customer 3',
+            'email' => 'cust3@gmail.com',
+            'password' => Hash::make('custpassword'),
+            'role_id' => UserRolesEnum::Customer,
+        ]); 
+
+
+        // create mock employees
+        \App\Models\User::create([
+            'name' => 'Employee 1',
+            'email' => 'emp1@salonbliss.com',
+            'password' => Hash::make('emppassword'),
+            'role_id' => UserRolesEnum::Employee,
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Employee 2',
+            'email' => 'emp2@salonbliss.com',
+            'password' => Hash::make('emppassword'),
+            'role_id' => UserRolesEnum::Employee,
+        ]);
+
+
     }
 }
