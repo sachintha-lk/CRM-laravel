@@ -1,5 +1,8 @@
 <?php
 
+use App\Enums\UserRolesEnum;
+use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,21 +20,32 @@ Route::get('/', function () {
     return view('web.home');
 })->name('home');
 
+
+// Users needs to be logged in for these routes
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'checkSuspended'
 ])->group(function () {
     
     Route::get('/dashboard', function () {
-    
+
         return view('dashboard.index');
     })->name('dashboard');
+
+    // middleware give access only for admin
+    Route::middleware([
+        'validateRole:Admin'
+        ])->group(function () {
+
+            Route::resource('dashboard/manageusers', App\Http\Controllers\UserController::class)->name('index','manageusers');
+
+    });
+
+    
+
 });
 
-// Route::get('/dashboard/manageusers', function () {
-//     return view('dashboard.manage-users.index');
-// })->name('manageusers');
 
 
-Route::resource('dashboard/manageusers', App\Http\Controllers\UserController::class)->name('index','manageusers');
