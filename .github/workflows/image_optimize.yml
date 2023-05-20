@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: 9sako6/imgcmp@v2.0.4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.IMGCMP_ACCESS_TOKEN }}
