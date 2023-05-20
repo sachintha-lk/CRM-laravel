@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -38,6 +39,22 @@ class UserController extends Controller
             return redirect()->route('dashboard')->with('error', 'You are not authorized to perform this action.');
         }
 
+        
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:1|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8|max:255',
+            'password_confirmation' => 'required|string|min:8|max:255|same:password',
+            'role' => 'required|string|in:employee,customer',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('manageusers.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $role = $request['role'];
 
         if ($role == 'employee') {
@@ -55,7 +72,7 @@ class UserController extends Controller
             ]);
         }
         catch (Exception $e) {
-            return redirect()->route('manageusers')->with('error', 'User creation failed.');
+            return redirect()->route('manageusers')->with('errormsg', 'User creation failed.');
         }
         
         return redirect()->route('manageusers')->with('success', 'User created successfully.');
