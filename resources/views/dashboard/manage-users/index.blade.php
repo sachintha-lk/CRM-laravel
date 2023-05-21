@@ -42,6 +42,7 @@
                   <div class="text-sm">
                     <div class="font-medium text-gray-700">{{ $user->name}}</div>
                     <div class="text-gray-400">{{ $user->email}}</div>
+                    <div class="text-gray-400 text-xs">{{ $user->phone_number}}</div>
                   </div>
                 </th>
                 <td class="px-6 py-4">

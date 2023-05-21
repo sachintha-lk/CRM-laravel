@@ -46,6 +46,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|max:255',
             'password_confirmation' => 'required|string|min:8|max:255|same:password',
+            'phone_number' => ['required', 'string', 'regex:/^[0-9]{10}$/', 'unique:users'],
             'role' => 'required|string|in:employee,customer',
         ]);
 
@@ -68,6 +69,7 @@ class UserController extends Controller
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
+                'phone_number' => $request['phone_number'],
                 'role_id' => $role_id,
             ]);
         }
