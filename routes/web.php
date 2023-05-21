@@ -26,7 +26,6 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    'checkSuspended'
 ])->group(function () {
     
     Route::get('/dashboard', function () {
@@ -40,10 +39,19 @@ Route::middleware([
         ])->group(function () {
 
             Route::resource('dashboard/manageusers', App\Http\Controllers\UserController::class)->name('index','manageusers');
+            Route::put('dashboard/manageusers/{id}/suspend', [App\Http\Controllers\UserSuspensionController::class, 'suspend'])->name('manageusers.suspend');
+            Route::put('dashboard/manageusers/{id}/activate', [App\Http\Controllers\UserSuspensionController::class, 'activate'])->name('manageusers.activate');
 
     });
 
-    
+
+    // middlleware to give access only for admin and employee
+    Route::middleware([
+        'validateRole:Admin,Employee'
+        ])->group(function () {
+            
+
+    });
 
 });
 

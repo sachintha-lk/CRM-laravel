@@ -5,12 +5,15 @@
             {{ __('Manage Users') }}
         </h2>
     </x-slot>
-    <x-button>
-      <a href="{{ route('manageusers.create') }}">Add User</a>
-    </x-button>
-    <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+    <div class="ml-5">
+      <x-button>
+        <a href="{{ route('manageusers.create') }}">Add User</a>
+      </x-button>
+    </div>
+   
+    <div class="overflow-auto rounded-lg border border-gray-200 shadow-md m-5">
   
-        <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+        <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-x-scroll min-w-screen">
           <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="pl-6 py-4 font-medium text-gray-900">Id</th>
@@ -44,7 +47,7 @@
                 <td class="px-6 py-4">
                      @if($user->status == true) 
                         <span
-                        class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+                        class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-medium  text-green-600"
                       >
                         <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
                         Active
@@ -52,7 +55,7 @@
                     
                     @else 
                         <span
-                        class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs text-red-600"
+                        class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-600"
                       >
                         <span class="h-1.5 w-1.5 rounded-full bg-red-600"></span>
                         Suspended
@@ -68,22 +71,24 @@
                 <td class="px-6 py-4">{{ $user->role->name }}</td>
                 <td class="px-6 py-4">
                   <div class="flex gap-2">
-
-                    {{-- <span
-                      class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600"
-                    >
-                      Design
-                    </span>
-                    <span
-                      class="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600"
-                    >
-                      Product
-                    </span>
-                    <span
-                      class="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600"
-                    >
-                      Develop
-                    </span> --}}
+                     
+                    @if($user->role()->first()->name != 'Admin') 
+                      @if($user->status == true) 
+                        <form action="{{ route('manageusers.suspend', $user->id) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <button type="submit" class="bg-red-50 p-1 px-2 rounded-md text-red-600 hover:text-red-900">Suspend</button>
+                        </form>
+                      @else
+                        <form action="{{ route('manageusers.activate', $user->id) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <button type="submit" class="bg-green-50 p-1 px-2 rounded-md text-green-600 hover:text-green-900">Activate</button>
+                        </form>
+                        
+                      @endif
+                    @endif 
+                    
                   </div>
                 </td>
             </tr>
@@ -91,5 +96,7 @@
             
           </tbody>
         </table>
+
+        
       </div>
 </x-dashboard>
