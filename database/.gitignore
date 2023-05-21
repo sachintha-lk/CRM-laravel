@@ -1,1 +1,2 @@
-*.sqlite*
+# *.sqlite*
+# commit the db for the submission
