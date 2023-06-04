@@ -97,6 +97,10 @@
             
           </tbody>
         </table>
+        <div class="p-5">
+          {{ $users->links() }}
+        </div>
+        
 
         
       </div>

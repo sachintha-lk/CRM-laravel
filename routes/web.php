@@ -50,6 +50,16 @@ Route::middleware([
         'validateRole:Admin,Employee'
         ])->group(function () {
             
+         
+            Route::resource('dashboard/manageservices', App\Http\Controllers\ManageService::class)->name('index','manageservices');
+            // Route::get('dashboard/manageservices', function() {
+            //     return view('dashboard.manage-services.index');
+            // })->name('manageservices');
+            // Route::get('dashboard/manageservices/create', function ()
+            // {
+            //     return view('dashboard.manage-services.create');
+            // } )->name('manageservices.create');
+            
 
     });
 
