@@ -42,15 +42,19 @@ class ManageServices extends Component
         'newService.is_hidden' => 'boolean',
     ];
 
+    if (isset($this->newService['image'])) {
     // Conditionally add the image validation rule
     if (is_string($this->newService['image'])) {
 
         $rules['newService.image'] = 'required|string|min:1|max:255';
     } else {
-        dd($this->newService['image']);
+        // dd($this->newService['image']);
 
         // TODO: Fix image upload when updating
         $rules['newService.image'] = 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048'; // max 2MB
+    }
+    } else {
+        $rules['newService.image'] = 'required|string|min:1|max:255';
     }
 
     return $rules;
@@ -110,7 +114,7 @@ class ManageServices extends Component
     public function saveService() {
         
         // dd($this->newService['image']);
-        dd($this->newService['image'] instanceof \Illuminate\Http\UploadedFile);
+        // dd($this->newService['image'] instanceof \Illuminate\Http\UploadedFile);
         // dd($newService['image']);
 
         // if (is_string($this->newService['image'])) {
@@ -144,10 +148,13 @@ class ManageServices extends Component
             
             $this->newService->save();
         } else {
+
+            $this->newService['image']->store('images', 'public');
+            
             Service::create([
                 'name' => $this->newService['name'],
                 'description' => $this->newService['description'],
-                'image' => $this->newService['image'],
+                'image' => $this->newService['image']->hashName(),
                 'price' => $this->newService['price'],
                 'is_hidden' => isset($this->newService['is_hidden']) ? $this->newService['is_hidden'] : false,
             ]);

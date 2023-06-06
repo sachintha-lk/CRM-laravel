@@ -1,8 +1,8 @@
 <div>
-    <div class="flex justify-between">
+    <div class="flex justify-between mx-7">
         <h2 class="text-2xl font-bold">Services</h2>
         
-        <x-button wire:click="confirmServiceAdd"  class="px-4 py-2 text-white bg-pink-500 rounded-md hover:bg--600">
+        <x-button wire:click="confirmServiceAdd"  class="px-5 py-2 text-white bg-pink-500 rounded-md hover:bg--600">
             Create
         </x-button>
     </div>
@@ -33,24 +33,24 @@
             
             @foreach ($services as $service)
             <tr class="hover:bg-gray-50">
-                <td class="pl-6 py-4">{{ $service->id }}</td>
+                <td class="pl-6 py-4  max-w-0">{{ $service->id }}</td>
     
-                <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                <th class="flex gap-3 px-6 py-4 font-normal text-gray-900  max-w-0">
                  
                     <div class="font-medium text-gray-700">{{ $service->name}}</div>
                
                 </th>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4  max-w-0">
                     <div class="font-medium text-gray-700">
                         <img src="{{ asset('storage/images/' . $service->image) }}" alt="" class="w-20 h-20 object-cover">
                     </div>
                 </td>
                
-                <td class="px-6 py-4">{{ $service->description }}</td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 max-w-0">{{ $service->description }}</td>
+                <td class="px-6 py-4  max-w-0">
                     <div class="font-medium text-gray-700">{{ $service->price}}</div>
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 ">
                     <div>
                    
                     @if($service->is_hidden == true) 
@@ -72,7 +72,7 @@
                     </div>
                 </td>
                 <td>
-                    <div class="mt-5">
+                    <div class="mt-5 ">
                         <x-button wire:click="confirmServiceEdit({{ $service->id }})" wire:loading.attr="disabled">
                             {{ __('Edit') }}
                         </x-button>

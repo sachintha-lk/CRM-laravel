@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('web.home');
 })->name('home');
 
+Route::get('/services', [App\Http\Controllers\ServiceDisplay::class, 'index'])->name('services');
 
 // Users needs to be logged in for these routes
 Route::middleware([
