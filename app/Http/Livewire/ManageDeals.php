@@ -28,28 +28,11 @@ class ManageDeals extends Component
     $rules = [
         'newDeal.name' => 'required|string|min:1|max:255',
         'newDeal.description' => 'required|string|min:1|max:255',
-        'newDeal.discount' => 'required|numeric|min:0',
+        'newDeal.discount' => 'required|numeric|min:0|max:100',
         'newDeal.date_start' => 'required|date',
-        'newDeal.date_end' => 'required|date',
-
-        'newDeal.price' => 'required|numeric|min:0',
+        'newDeal.date_end' => 'required|date|after_or_equal:newDeal.date_start',
         'newDeal.is_hidden' => 'boolean',
     ];
-
-    if (isset($this->newDeal['image'])) {
-    // Conditionally add the image validation rule
-    if (is_string($this->newDeal['image'])) {
-
-        $rules['newDeal.image'] = 'required|string|min:1|max:255';
-    } else {
-        // dd($this->newDeal['image']);
-
-        // TODO: Fix image upload when updating
-        $rules['newDeal.image'] = 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048'; // max 2MB
-    }
-    } else {
-        $rules['newDeal.image'] = 'required|string|min:1|max:255';
-    }
 
     return $rules;
 }
@@ -92,58 +75,27 @@ class ManageDeals extends Component
     public function confirmDealEdit( Deal $newDeal ) {
         $this->newDeal = $newDeal;
 
-    //    dd($newDeal->image);
-
-        // dd($this->newDeal);
-        $this->newDeal['image'] = $newDeal->image;
-        // dd($newDeal['image']);
-
-
-
+        // using the same form for adding and editing
         $this->confirmingDealAdd = true;
     }
-    
-
 
     public function saveDeal() {
-        
-       
+             
         $this->validate();
       
-
-        // if id is set, it means we are editing existing deal
-        if (isset($this->newDeal['id'])) {
-                
-            // if image is string, it means it is not changed
-            if (is_string($this->newDeal['image'])) {
-                $this->newDeal['image'] = $this->newDeal['image'];
-                
-            } else {
-                dd($originalImage = $this->newDeal['image']->getClientOriginalName());
-                
-                $this->newDeal['image']->store('images', 'public');
-                $this->newDeal['image'] = $this->newDeal['image']->hashName();
-
-                // remove old image
-                
-                
-
-                
-            }
-            
+        if (isset($this->newDeal->id)) {
             $this->newDeal->save();
         } else {
-
-            $this->newDeal['image']->store('images', 'public');
             
-            Deal::create([
-                'name' => $this->newDeal['name'],
-                'description' => $this->newDeal['description'],
-                
-                'price' => $this->newDeal['price'],
-                'is_hidden' => isset($this->newDeal['is_hidden']) ? $this->newDeal['is_hidden'] : false,
-            ]);
-           
+        Deal::create([
+            'name' => $this->newDeal['name'],
+            'description' => $this->newDeal['description'],
+            'discount' => $this->newDeal['discount'],  // divide by 100 for the percentage
+            'date_start' => $this->newDeal['date_start'],
+            'date_end' => $this->newDeal['date_end'],
+            'is_hidden' => isset($this->newService['is_hidden']) ? $this->newService['is_hidden'] : false,
+        ]);
+        
         }
        
 

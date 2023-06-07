@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 
-class ServiceDisplay extends Controller
+class DisplayService extends Controller
 {
     // show all services page
     public function index()

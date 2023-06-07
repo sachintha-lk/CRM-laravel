@@ -103,11 +103,12 @@
             </x-slot>
     
             <x-slot name="footer">
+                <div class="flex gap-3">
                 <x-secondary-button wire:click="$set('confirmingServiceDeletion', false)" wire:loading.attr="disabled">
                     {{ __('Cancel') }}
                 </x-secondary-button>
     
-                <div class="mt-5">
+            
                     <x-danger-button wire:click="deleteService({{ $confirmingServiceDeletion }})" wire:loading.attr="disabled">
                         {{ __('Delete') }}
                     </x-danger-button>
