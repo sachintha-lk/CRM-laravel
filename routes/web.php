@@ -52,7 +52,17 @@ Route::middleware([
         ])->group(function () {
             
          
-            Route::resource('dashboard/manageservices', App\Http\Controllers\ManageService::class)->name('index','manageservices');
+            // Route::resource('dashboard/manageservices', App\Http\Controllers\ManageService::class)->name('index','manageservices');
+            Route::get('dashboard/manageservices', function () {
+                return view('dashboard.manage-services.index');
+            })->name('manageservices');
+          
+            Route::get('dashboard/managedeals', function () {
+                return view('dashboard.manage-deals.index');
+            })->name('managedeals');
+
+            // Route::resource('dashboard/managedeals', App\Http\Controllers\ManageDeals::class)->name('index','managedeals');
+
             // Route::get('dashboard/manageservices', function() {
             //     return view('dashboard.manage-services.index');
             // })->name('manageservices');
