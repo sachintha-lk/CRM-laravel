@@ -23,18 +23,19 @@ If you want to run this project locally, follow the [installation instructions](
 Below are some screenshots of the website.
 
 <figure>
-<img src="readme-assets/screenshots/homepage.png">
 <figcaption align="center">Home Page</figcaption>
+<img src="readme-assets/screenshots/homepage.png">
 </figure>
 
 <figure>
-<img src="readme-assets/screenshots/dashboard.png">
 <figcaption align="center">Admin Dashboard Page</figcaption>
+<img src="readme-assets/screenshots/dashboard.png">
 </figure>
 
 <figure>
-<img src="readme-assets/screenshots/manage-deals.png">
 <figcaption align="center">Manage Deals Page</figcaption>
+<img src="readme-assets/screenshots/manage-deals.png">
+
 </figure>
 
 ## Installation
