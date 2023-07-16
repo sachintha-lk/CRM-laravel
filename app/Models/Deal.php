@@ -12,10 +12,9 @@ class Deal extends Model
     protected $fillable = [
         'name',
         'description',
-        'discount', 
-        'date_start',
-        'date_end',
+        'discount',
+        'start_date',
+        'end_date',
         'is_hidden',
     ];
-
 }

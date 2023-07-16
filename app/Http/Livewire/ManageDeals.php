@@ -11,32 +11,33 @@ use Illuminate\Support\Facades\Log;
 class ManageDeals extends Component
 
 {
-    
-    use withPagination;
- 
 
-    public $confirmingDealDeletion = false; 
+    use withPagination;
+
+
+    public $confirmingDealDeletion = false;
     public $confirmingDealAdd = false;
     public $confirmingDealEdit = false;
 
-    
-    public $newDeal, $name, $description, $discount, $date_start, $date_end, $is_hidden;
+
+    public $newDeal, $name, $description, $discount, $start_date, $end_date, $is_hidden;
 
 
 
-    protected function rules() {
-    $rules = [
-        'newDeal.name' => 'required|string|min:1|max:255',
-        'newDeal.description' => 'required|string|min:1|max:255',
-        'newDeal.discount' => 'required|numeric|min:0|max:100',
-        'newDeal.date_start' => 'required|date',
-        'newDeal.date_end' => 'required|date|after_or_equal:newDeal.date_start',
-        'newDeal.is_hidden' => 'boolean',
-    ];
+    protected function rules()
+    {
+        $rules = [
+            'newDeal.name' => 'required|string|min:1|max:255',
+            'newDeal.description' => 'required|string|min:1|max:255',
+            'newDeal.discount' => 'required|numeric|min:0|max:100',
+            'newDeal.start_date' => 'required|date',
+            'newDeal.end_date' => 'required|date|after_or_equal:newDeal.start_date',
+            'newDeal.is_hidden' => 'boolean',
+        ];
 
-    return $rules;
-}
-  
+        return $rules;
+    }
+
 
     public function render()
     {
@@ -50,8 +51,6 @@ class ManageDeals extends Component
     public function confirmDealDeletion($id)
     {
         $this->confirmingDealDeletion = $id;
-
-
     }
 
     public function deleteDeal(Deal $deal)
@@ -60,53 +59,46 @@ class ManageDeals extends Component
 
         session()->flash('message', 'Deal successfully deleted.');
         $this->confirmingDealDeletion = false;
-        
     }
 
 
-    public function confirmDealAdd() {
+    public function confirmDealAdd()
+    {
 
         $this->reset(['newDeal']);
         $this->confirmingDealAdd = true;
-
-  
     }
 
-    public function confirmDealEdit( Deal $newDeal ) {
+    public function confirmDealEdit(Deal $newDeal)
+    {
         $this->newDeal = $newDeal;
 
         // using the same form for adding and editing
         $this->confirmingDealAdd = true;
     }
 
-    public function saveDeal() {
-             
+    public function saveDeal()
+    {
+
         $this->validate();
-      
+
         if (isset($this->newDeal->id)) {
             $this->newDeal->save();
         } else {
-            
-        Deal::create([
-            'name' => $this->newDeal['name'],
-            'description' => $this->newDeal['description'],
-            'discount' => $this->newDeal['discount'],  // divide by 100 for the percentage
-            'date_start' => $this->newDeal['date_start'],
-            'date_end' => $this->newDeal['date_end'],
-            'is_hidden' => isset($this->newService['is_hidden']) ? $this->newService['is_hidden'] : false,
-        ]);
-        
+
+            Deal::create([
+                'name' => $this->newDeal['name'],
+                'description' => $this->newDeal['description'],
+                'discount' => $this->newDeal['discount'],  // divide by 100 for the percentage
+                'start_date' => $this->newDeal['start_date'],
+                'end_date' => $this->newDeal['end_date'],
+                'is_hidden' => isset($this->newService['is_hidden']) ? $this->newService['is_hidden'] : false,
+            ]);
         }
-       
+
 
         session()->flash('message', 'Deal successfully saved.');
 
         $this->confirmingDealAdd = false;
-
-      
     }
-
-
-
-    
 }

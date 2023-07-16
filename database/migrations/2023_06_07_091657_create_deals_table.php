@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->double('discount');
-            $table->date('date_start');
-            $table->date('date_end');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });

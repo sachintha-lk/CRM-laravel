@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $userroles = [
-            [   
+            [
                 'id' => UserRolesEnum::Customer,
                 'name' => 'Customer',
                 'status' => true,
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '1299567890',
             'role_id' => UserRolesEnum::Customer,
         ]);
-        
+
         \App\Models\User::create([
             'name' => 'Customer 2',
             'email' => 'cust2@gmail.com',
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Employee 1',
             'email' => 'emp1@salonbliss.com',
             'password' => Hash::make('emppassword'),
-            'phone_number' => '1644567890', 
+            'phone_number' => '1644567890',
             'role_id' => UserRolesEnum::Employee,
         ]);
 
@@ -104,20 +104,28 @@ class DatabaseSeeder extends Seeder
             'name' => 'Employee 2',
             'email' => 'emp2@salonbliss.com',
             'password' => Hash::make('emppassword'),
-            'phone_number' => '1234523890', 
+            'phone_number' => '1234523890',
             'role_id' => UserRolesEnum::Employee,
         ]);
 
         // this Employee is suspeneded
         \App\Models\User::create([
-        'name' => 'Employee 3',
-        'email' => 'emp3@gmail.com',
-        'password' => Hash::make('emppassword'),
-        'phone_number' => '0034567890', 
-        'role_id' => UserRolesEnum::Employee,
-        'status' => '0',
-    ]);
+            'name' => 'Employee 3',
+            'email' => 'emp3@gmail.com',
+            'password' => Hash::make('emppassword'),
+            'phone_number' => '0034567890',
+            'role_id' => UserRolesEnum::Employee,
+            'status' => '0',
+        ]);
 
-
+        // Deals
+        \App\Models\Deal::create([
+            'name' => 'Deal 1',
+            'description' => 'Deal 1 description',
+            'start_date' => '2023-07-16',
+            'end_date' => '2023-07-20',
+            'discount' => '10',
+            'is_hidden' => '0',
+        ]);
     }
 }

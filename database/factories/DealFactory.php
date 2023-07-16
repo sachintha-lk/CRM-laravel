@@ -17,13 +17,13 @@ class DealFactory extends Factory
     public function definition(): array
     {
         return [
-           
+
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
             'discount' => $this->faker->randomFloat(2, 0, 100),
-            'date_start' => $this->faker->date(),
-            'date_end' => $this->faker->date(),
-     
+            'start_date' => $this->faker->date(),
+            'end_date' => $this->faker->date(),
+
         ];
     }
 }

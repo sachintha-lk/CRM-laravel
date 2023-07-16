@@ -43,10 +43,10 @@
                         <div class="font-medium text-gray-700">{{ ($deal->discount) }} %</div>
                     </td>
                     <td class="px-6 py-4  max-w-0">
-                        <div class="font-medium text-gray-700">{{ $deal->date_start }}</div>
+                        <div class="font-medium text-gray-700">{{ $deal->start_date }}</div>
                     </td>
                     <td class="px-6 py-4  max-w-0">
-                        <div class="font-medium text-gray-700">{{ $deal->date_end }}</div>
+                        <div class="font-medium text-gray-700">{{ $deal->end_date }}</div>
                     </td>
                     
                     <td class="px-6 py-4 ">
@@ -146,14 +146,14 @@
                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                             
                             <div>
-                                <label for="date_start" class="block text-sm font-medium text-gray-700">Date Start</label>
-                                <input type="date" wire:model="newDeal.date_start" id="date_start" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
-                                @error('newDeal.date_start') <span class="text-red-500">{{ $message }}</span>@enderror
+                                <label for="start_date" class="block text-sm font-medium text-gray-700">Date Start</label>
+                                <input type="date" wire:model="newDeal.start_date" id="start_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+                                @error('newDeal.start_date') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                             <div>
-                                <label for="date_end" class="block text-sm font-medium text-gray-700">Date End</label>
-                                <input type="date" wire:model="newDeal.date_end" id="date_end" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
-                                @error('newDeal.date_end') <span class="text-red-500">{{ $message }}</span>@enderror
+                                <label for="end_date" class="block text-sm font-medium text-gray-700">Date End</label>
+                                <input type="date" wire:model="newDeal.end_date" id="end_date" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm">
+                                @error('newDeal.end_date') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         </div>
                         
