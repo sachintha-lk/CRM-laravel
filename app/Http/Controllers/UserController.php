@@ -39,7 +39,7 @@ class UserController extends Controller
             return redirect()->route('dashboard')->with('error', 'You are not authorized to perform this action.');
         }
 
-        
+
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:1|max:255',
@@ -63,8 +63,8 @@ class UserController extends Controller
         } else {
             $role_id = UserRolesEnum::Customer;
         }
- 
-        try{
+
+        try {
             User::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
@@ -72,16 +72,11 @@ class UserController extends Controller
                 'phone_number' => $request['phone_number'],
                 'role_id' => $role_id,
             ]);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('manageusers')->with('errormsg', 'User creation failed.');
         }
-        
+
         return redirect()->route('manageusers')->with('success', 'User created successfully.');
-
-      
-      
-
     }
 
     /**
