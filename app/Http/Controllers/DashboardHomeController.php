@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\AdminDashboardHomeController;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class DashboardHomeController extends Controller
 {
     public function index()
     {
@@ -14,6 +14,9 @@ class DashboardController extends Controller
             return $adminDashboardHomeController->index();
         } else if (auth()->user()->role_id == 3) {
             return view('dashboard.customer');
+        }
+        else {
+            return redirect()->route('home')->with('error', 'You are not authorized to perform this action.');
         }
     }
 }

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', [App\Http\Controllers\AdminDashboardHome::class, 'index'])->name('test');
+//Route::get('/test', [App\Http\Controllers\AdminDashboardHome::class, 'index'])->name('test');
 
 Route::get('/', function () {
     return view('web.home');
@@ -33,7 +33,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardHomeController::class, 'index'])->name('dashboard');
 
     // middleware to give access only for admin
     Route::middleware([

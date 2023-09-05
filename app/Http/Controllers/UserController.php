@@ -14,10 +14,20 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(10);
-        return view('dashboard.manage-users.index', compact('users'));
+        $request->validate([
+            'search' => 'nullable|string|max:255',
+        ]);
+
+        $search = $request['search'];
+
+        $users = User::where('name', 'LIKE', "%{$search}%")
+            ->orWhere('email', 'LIKE', "%{$search}%")
+            ->orWhere('phone_number', 'LIKE', "%{$search}%")
+            ->paginate(10);
+
+        return view('dashboard.manage-users.index', compact('users'), ['search' => $search]);
     }
 
     /**
