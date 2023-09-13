@@ -10,7 +10,7 @@ services:
       - "8000:8000"
     command: sleep infinity
   mariadb:
-    image: mariadb:10.4
+    image: mariadb:10.11
     expose:
       # Expose mariadb port to php service (Access as hostname "mariadb" from within php container)
       - "3306"
