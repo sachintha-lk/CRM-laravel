@@ -15,6 +15,7 @@ class Service extends Model
         'image',
         'price',
         'is_hidden',
+        'category_id',
     ];
 
     // is visible
@@ -32,6 +33,11 @@ class Service extends Model
 
         // default is PriceLowToHigh
         return $query->orderBy('price', 'asc');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
 }

@@ -35,6 +35,7 @@ class ManageServices extends Component
         'newService.description' => 'required|string|min:1|max:255',
         'newService.price' => 'required|numeric|min:0',
         'newService.is_hidden' => 'boolean',
+        'newService.category_id' => 'required|integer|min:1|exists:categories,id',
     ];
     // check if image is an instance of UploadedFile
     if ($this->image instanceof \Illuminate\Http\UploadedFile) {
@@ -55,9 +56,12 @@ class ManageServices extends Component
                     ->orWhere('description', 'like', '%'.$this->search.'%');
             })
             ->orderByPrice('PriceLowToHigh')
+            ->with('category')
             ->paginate(10);
 
-        return view('livewire.manage-services', compact('services'));
+        $categories = \App\Models\Category::all();
+
+        return view('livewire.manage-services', compact('services'), compact('categories'));
     }
 
     public function confirmServiceDeletion($id)
@@ -103,6 +107,7 @@ class ManageServices extends Component
     $this->validateOnly('newService.description');
     $this->validateOnly('newService.price');
     $this->validateOnly('newService.is_hidden');
+    $this->validateOnly('newService.category_id');
 
         if ($this->newService['id']) {
 
@@ -131,9 +136,6 @@ class ManageServices extends Component
         } else {
             $service = Service::create($this->newService);
         }
-
-
-
 
         session()->flash('message', 'Service successfully saved.');
 

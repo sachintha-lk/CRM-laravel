@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->decimal('price', 8, 2);
+            $table->foreignId('category_id')->nullable()->index();
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });

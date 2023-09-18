@@ -127,5 +127,28 @@ class DatabaseSeeder extends Seeder
             'discount' => '10',
             'is_hidden' => '0',
         ]);
+
+        // categories Skin, Makeup, Nails, Hair
+        \App\Models\Category::create([
+            'name' => 'Skin',
+        ]);
+
+        \App\Models\Category::create([
+            'name' => 'Makeup',
+        ]);
+
+        \App\Models\Category::create([
+            'name' => 'Hair',
+        ]);
+
+        \App\Models\Category::create([
+            'name' => 'Nails',
+        ]);
+
+        $this->call([
+            ServicesSeeder::class,
+        ]);
+
+
     }
 }

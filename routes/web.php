@@ -60,6 +60,14 @@ Route::middleware([
             return view('dashboard.manage-deals.index');
         })->name('managedeals');
 
+        Route::get('dashboard/managecategories/', function () {
+            return view('dashboard.manage-categories.index');
+        })->name('managecategories' );
+
+        Route::get('dashboard/managecategories/create', function () {
+            return view('dashboard.manage-categories.index');
+        })->name('managecategories.create');
+
         // Route::resource('dashboard/managedeals', App\Http\Controllers\ManageDeals::class)->name('index','managedeals');
 
         // Route::get('dashboard/manageservices', function() {

@@ -37,6 +37,7 @@
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Photo</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Description</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Price</th>
+              <th scope="col" class="px-6 py-4 font-medium text-gray-900">Category</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Visibility</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900">Actions</th>
               <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
@@ -60,8 +61,13 @@
                 </td>
 
                 <td class="px-6 py-4 max-w-0">{{ $service->description }}</td>
+
                 <td class="px-6 py-4  max-w-0">
                     <div class="font-medium text-gray-700">{{ $service->price}}</div>
+                </td>
+                <td class="px-6 py-4  max-w-0">
+{{--                    @dd($service->category->name)--}}
+                    <div class="font-medium text-gray-700">{{ $service->category?->name}}</div>
                 </td>
                 <td class="px-6 py-4 ">
                     <div>
@@ -159,6 +165,20 @@
                             @error('newService.price') <span class="text-red-500">{{ $message }}</span>@enderror
 
                         </div>
+
+                        <div>
+                            <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
+
+                            <select wire:model="newService.category_id" id="category_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option disabled selected value="">Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name}}</option>
+                                @endforeach
+                                @error('newService.category_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </select>
+                        </div>
+
+
                         <div>
                             <label for="is_hidden" class="block text-sm font-medium text-gray-700">Is Hidden</label>
 
