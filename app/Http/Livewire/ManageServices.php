@@ -32,10 +32,19 @@ class ManageServices extends Component
 {
     $rules = [
         'newService.name' => 'required|string|min:1|max:255',
+        'newService.slug' => 'unique:services,slug,' . ($this->newService['id'] ?? ''),
         'newService.description' => 'required|string|min:1|max:255',
         'newService.price' => 'required|numeric|min:0',
         'newService.is_hidden' => 'boolean',
         'newService.category_id' => 'required|integer|min:1|exists:categories,id',
+        'newService.allergens' => 'nullable|string|min:1|max:255',
+        'newService.cautions' => 'nullable|string|min:1|max:255',
+        // duration should be increments of 15 minutes max 24 hours : )
+        'newService.duration_minutes' => 'nullable|integer|min:15|max:1440|multiple_of:15',
+        'newService.benefits' => 'nullable|string|min:1|max:255',
+        'newService.aftercare_tips' => 'nullable|string|min:1|max:255',
+        'newService.notes' => 'nullable|string|min:1|max:255',
+
     ];
     // check if image is an instance of UploadedFile
     if ($this->image instanceof \Illuminate\Http\UploadedFile) {
@@ -53,7 +62,11 @@ class ManageServices extends Component
 
         $services = Service::when($this->search, function ($query) {
                 $query->where('name', 'like', '%'.$this->search.'%')
-                    ->orWhere('description', 'like', '%'.$this->search.'%');
+                    ->orWhere('description', 'like', '%'.$this->search.'%')
+                ->orWhere('price', 'like', '%'.$this->search.'%')
+                ->orWhereHas('category', function ($query) {
+                    $query->where('name', 'like', '%'.$this->search.'%');
+                });
             })
             ->orderByPrice('PriceLowToHigh')
             ->with('category')
@@ -109,7 +122,7 @@ class ManageServices extends Component
     $this->validateOnly('newService.is_hidden');
     $this->validateOnly('newService.category_id');
 
-        if ($this->newService['id']) {
+        if (isset($this->newService['id'])) {
 
             // If a new image is uploaded then delete the old one
             if ($this->image instanceof \Illuminate\Http\UploadedFile) {
@@ -121,20 +134,30 @@ class ManageServices extends Component
                 Storage::delete($originalImage);
 
                 // save the image and get the path
-
                 $this->image = $this->image->store('images', 'public');
 
             }
 
             // save the service
-
             $this->newService['image'] = $this->image;
+
+            if ($this->newService->isDirty('name')) {
+                $this->newService->slug = \Str::slug($this->newService->name);
+                $this->validate(['newService.slug' => 'unique:services,slug,' . $this->newService->id]);
+            }
 
             $this->newService->save();
 
 
         } else {
+            // create a slug
+
+            $this->newService['slug'] = \Str::slug($this->newService['name']);
+
+//            $this->validate(['newService.slug' => 'unique:services,slug']);
+
             $service = Service::create($this->newService);
+
         }
 
         session()->flash('message', 'Service successfully saved.');

@@ -11,11 +11,18 @@ class Service extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
         'image',
         'price',
-        'is_hidden',
+        'notes',
+        'allergens',
+        'benefits',
+        'aftercare_tips',
+        'cautions',
+        'duration_minutes',
         'category_id',
+        'is_hidden',
     ];
 
     // is visible

@@ -16,11 +16,14 @@ class CustomerServicesView extends Component
     public $categoryFilter = [];
     public $sortByPrice = 'PriceLowToHigh';
 
+    public $sortDropDown;
+
     private $services;
 
     protected $queryString = [
         'search' => ['except' => ''],
         'categoryFilter' => ['except' => []],
+        'sortDropDown' => ['except' => 'PriceLowToHigh'],
     ];
 
     public function mount()
@@ -55,6 +58,23 @@ class CustomerServicesView extends Component
 
     public function updatedCategoryFilter()
     {
+        $this->render(); // Re-render the component
+    }
+
+    public function sortByMostPopular($sort)
+    {
+        // validate $sort value to only be 'PriceLowToHigh' or 'PriceHighToLow'
+
+        if ( $sort == 'PriceLowToHigh' || $sort == 'PriceHighToLow' ) {
+            $this->sortByPrice = $sort;
+        } else {
+            $this->sortByPrice = 'PriceLowToHigh';
+        }
+
+        echo $this->sortByPrice;
+
+
+
         $this->render(); // Re-render the component
     }
 

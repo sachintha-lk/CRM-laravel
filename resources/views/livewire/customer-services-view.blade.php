@@ -73,17 +73,17 @@
                                         aria-controls="filter-section-mobile-0" aria-expanded="false">
                                     <span class="font-medium text-gray-900">Color</span>
                                     <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path
-                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
-                    </svg>
-                                        <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
-                            clip-rule="evenodd"/>
-                    </svg>
-                  </span>
+                                    <!-- Expand icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path
+                                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                                    </svg>
+                                                        <!-- Collapse icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                            clip-rule="evenodd"/>
+                                    </svg>
+                                  </span>
                                 </button>
                             </h3>
                             <!-- Filter section, show/hide based on section state. -->
@@ -142,17 +142,17 @@
                                         aria-controls="filter-section-mobile-1" aria-expanded="false">
                                     <span class="font-medium text-gray-900">Category</span>
                                     <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path
-                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
-                    </svg>
-                                        <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
-                            clip-rule="evenodd"/>
-                    </svg>
-                  </span>
+                                    <!-- Expand icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path
+                                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                                    </svg>
+                                                        <!-- Collapse icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                            clip-rule="evenodd"/>
+                                    </svg>
+                                  </span>
                                 </button>
                             </h3>
                             <!-- Filter section, show/hide based on section state. -->
@@ -204,61 +204,20 @@
                                         aria-controls="filter-section-mobile-2" aria-expanded="false">
                                     <span class="font-medium text-gray-900">Size</span>
                                     <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path
-                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
-                    </svg>
-                                        <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
-                            clip-rule="evenodd"/>
-                    </svg>
-                  </span>
+                                    <!-- Expand icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path
+                                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                                    </svg>
+                                                        <!-- Collapse icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                            clip-rule="evenodd"/>
+                                    </svg>
+                                  </span>
                                 </button>
                             </h3>
-                            <!-- Filter section, show/hide based on section state. -->
-                            <div class="pt-6" id="filter-section-mobile-2">
-                                <div class="space-y-6">
-                                    <div class="flex items-center">
-                                        <input id="filter-mobile-size-0" name="size[]" value="2l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-mobile-size-0"
-                                               class="ml-3 min-w-0 flex-1 text-gray-500">2L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-mobile-size-1" name="size[]" value="6l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-mobile-size-1"
-                                               class="ml-3 min-w-0 flex-1 text-gray-500">6L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-mobile-size-2" name="size[]" value="12l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-mobile-size-2"
-                                               class="ml-3 min-w-0 flex-1 text-gray-500">12L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-mobile-size-3" name="size[]" value="18l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-mobile-size-3"
-                                               class="ml-3 min-w-0 flex-1 text-gray-500">18L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-mobile-size-4" name="size[]" value="20l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-mobile-size-4"
-                                               class="ml-3 min-w-0 flex-1 text-gray-500">20L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-mobile-size-5" name="size[]" value="40l" type="checkbox"
-                                               checked
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-mobile-size-5"
-                                               class="ml-3 min-w-0 flex-1 text-gray-500">40L</label>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </form>
                 </div>
@@ -328,29 +287,36 @@
                                    :class="( selectedIndex === 0) ? 'font-medium text-gray-900' : 'text-gray-500'"
                                    class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                    id="menu-item-0"
-                                   @click="showSortMenu = false; selectedIndex = 0; selectedSort = 'Most Popular' ">Most
+                                   wire:click.prevent='sortByMostPopular(Most_Popular)'
+                                   @click="showSortMenu = false; selectedIndex = 0; selectedSort = 'Most Popular'
+
+                                   ">Most
                                     Popular</a>
                                 <a href="#"
                                    :class="( selectedIndex === 1) ? 'font-medium text-gray-900' : 'text-gray-500'"
                                    class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                    id="menu-item-1"
+                                   wire:click.prevent='sortByMostPopular("MostPopular")'
                                    @click="showSortMenu = false; selectedIndex = 1; selectedSort = 'Best Rating' ">Best
                                     Rating</a>
                                 <a href="#"
                                    :class="( selectedIndex === 2) ? 'font-medium text-gray-900' : 'text-gray-500'"
                                    class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                    id="menu-item-2"
+                                   wire:click.prevent='sortByMostPopular("Newest")'
                                    @click="showSortMenu = false; selectedIndex = 2; selectedSort = 'Newest' ">Newest</a>
                                 <a href="#"
                                    :class="( selectedIndex === 3) ? 'font-medium text-gray-900' : 'text-gray-500'"
                                    class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                    id="menu-item-3"
+                                   wire:click.prevent='sortByMostPopular("PriceLowToHigh")'
                                    @click="showSortMenu = false; selectedIndex = 3; selectedSort = 'Price: Low to High' ">Price:
                                     Low to High</a>
                                 <a href="#"
                                    :class="( selectedIndex === 4) ? 'font-medium text-gray-900' : 'text-gray-500'"
                                    class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                    id="menu-item-4"
+                                   wire:click.prevent='sortByMostPopular("PriceHighToLow")'
                                    @click="showSortMenu = false; selectedIndex = 4; selectedSort = 'Price: High to Low' ">Price:
                                     High to Low</a>
                             </div>
@@ -390,17 +356,17 @@
                                         aria-controls="filter-section-1" aria-expanded="false">
                                     <span class="font-medium text-gray-900">Category</span>
                                     <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path
-                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
-                    </svg>
-                                        <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
-                            clip-rule="evenodd"/>
-                    </svg>
-                  </span>
+                                    <!-- Expand icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path
+                                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                                    </svg>
+                                                        <!-- Collapse icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                            clip-rule="evenodd"/>
+                                    </svg>
+                                  </span>
                                 </button>
                             </h3>
                             <!-- Filter section, show/hide based on section state. -->
@@ -424,59 +390,26 @@
                                         aria-controls="filter-section-2" aria-expanded="false">
                                     <span class="font-medium text-gray-900">Size</span>
                                     <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path
-                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
-                    </svg>
-                                        <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
-                            clip-rule="evenodd"/>
-                    </svg>
-                  </span>
+                                    <!-- Expand icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path
+                                          d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+                                    </svg>
+                                                        <!-- Collapse icon, show/hide based on section open state. -->
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z"
+                                            clip-rule="evenodd"/>
+                                    </svg>
+                                  </span>
                                 </button>
                             </h3>
                             <!-- Filter section, show/hide based on section state. -->
-                            <div class="pt-6" id="filter-section-2">
-                                <div class="space-y-4">
-                                    <div class="flex items-center">
-                                        <input id="filter-size-0" name="size[]" value="2l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-size-0" class="ml-3 text-sm text-gray-600">2L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-size-1" name="size[]" value="6l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-size-1" class="ml-3 text-sm text-gray-600">6L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-size-2" name="size[]" value="12l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-size-2" class="ml-3 text-sm text-gray-600">12L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-size-3" name="size[]" value="18l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-size-3" class="ml-3 text-sm text-gray-600">18L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-size-4" name="size[]" value="20l" type="checkbox"
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-size-4" class="ml-3 text-sm text-gray-600">20L</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input id="filter-size-5" name="size[]" value="40l" type="checkbox" checked
-                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-size-5" class="ml-3 text-sm text-gray-600">40L</label>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </form>
 
                     <!-- Product grid -->
-                    <div class="lg:col-span-3 flex flex-col md:flex-row mt-3 pb-7 h-max bg-gray-50">
+                    <div class="lg:col-span-3 flex flex-col flex-wrap gap-2  md:flex-row mt-3 pb-7 h-max bg-gray-50">
                         <!-- Your content -->
                         @foreach ($services as $service)
                             @if($service->is_hidden == false)
