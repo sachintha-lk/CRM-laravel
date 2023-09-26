@@ -47,4 +47,10 @@ class Service extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function hits()
+    {
+        return $this->hasMany(ServiceHit::class);
+    }
+
+
 }

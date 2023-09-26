@@ -1,4 +1,5 @@
 <x-app-layout>
+                {{$service}}
 {{--<div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">--}}
     <div class="md:w-9/12 w-full mx-auto">
     <div class="relative flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
@@ -11,43 +12,116 @@
 
         <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
             <div class="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-quick-preview-02-detail.jpg" alt="Two each of gray, white, and black shirts arranged on table." class="object-cover object-center">
+                <img src="{{ asset('storage/'. $service->image) }}" alt="{{$service->name . ' image'}}" class="object-cover object-center">
             </div>
+
             <div class="sm:col-span-8 lg:col-span-7">
-                <h2 class="text-2xl font-bold text-gray-900 sm:pr-12">Basic Tee 6-Pack</h2>
+                <h2 class="text-2xl font-bold text-gray-900 sm:pr-12">{{$service->name}}</h2>
+                <span class="text-gray-600"> Category : {{ $service->category->name }}</span>
+
+                <span class="ml-4 text-gray-500">
+                    Duration:
+                    @if ($service->duration_minutes >= 60)
+                        {{ floor($service->duration_minutes / 60) }} hr
+                    @endif
+                    @if ($service->duration_minutes % 60 > 0)
+                        {{ $service->duration_minutes % 60 }} mins
+                    @endif
+                    </span>
 
                 <section aria-labelledby="information-heading" class="mt-2">
                     <h3 id="information-heading" class="sr-only">Product information</h3>
 
-                    <p class="text-2xl text-gray-900">$192</p>
+                    <p class="text-2xl text-gray-900">LKR {{ number_format($service->price, 2, '.', ',') }}
+                    </p>
 
                     <!-- Reviews -->
+{{--                    <div class="mt-6">--}}
+{{--                        <h4 class="sr-only">Reviews</h4>--}}
+{{--                        <div class="flex items-center">--}}
+{{--                            <div class="flex items-center">--}}
+{{--                                <!-- Active: "text-gray-900", Default: "text-gray-200" -->--}}
+{{--                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
+{{--                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
+{{--                                </svg>--}}
+{{--                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
+{{--                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
+{{--                                </svg>--}}
+{{--                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
+{{--                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
+{{--                                </svg>--}}
+{{--                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
+{{--                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
+{{--                                </svg>--}}
+{{--                                <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
+{{--                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
+{{--                                </svg>--}}
+{{--                            </div>--}}
+{{--                            <p class="sr-only">3.9 out of 5 stars</p>--}}
+{{--                            <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                </section>
+                <section>
                     <div class="mt-6">
-                        <h4 class="sr-only">Reviews</h4>
+                        <h4 class="sr-only">Description</h4>
                         <div class="flex items-center">
                             <div class="flex items-center">
-                                <!-- Active: "text-gray-900", Default: "text-gray-200" -->
-                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                </svg>
-                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                </svg>
-                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                </svg>
-                                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                </svg>
-                                <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                </svg>
+                                {{ $service->description }}
                             </div>
-                            <p class="sr-only">3.9 out of 5 stars</p>
-                            <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
                         </div>
                     </div>
                 </section>
+                @if($service->benefits)
+                <section>
+                    <div class="mt-6">
+                        <h4 class="text-lg  font-medium">Benefits</h4>
+                        <div class="flex items-center">
+                            <div class="flex items-center">
+                                {{ $service->benefits}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                @endif
+                @if($service->cautions)
+                <section>
+                    <div class="mt-6">
+                        <h4 class="text-lg font-medium">Cautions</h4>
+                        <div class="flex items-center">
+                            <div class="flex items-center">
+                                {{ $service->cautions }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                @endif
+                @if($service->allegens)
+                <section>
+                    <div class="mt-6">
+                        <h4 class="text-lg font-medium">Allergens</h4>
+                        <div class="flex items-center">
+                            <div class="flex items-center">
+                                {{ $service->allergens }}
+                            </div>
+                        </div>
+                    </div>
+                </section
+                @endif
+                @if($service->aftercare_tips)
+                <section>
+                    <div class="mt-6">
+                            <h4 class="text-lg font-medium">After Care Tips</h4>
+                        <div class="flex items-center">
+                            <div class="flex items-center">
+                                {{ $service->aftercare_tips }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                @endif
+
+
 
                 <section aria-labelledby="options-heading" class="mt-10">
                     <h3 id="options-heading" class="sr-only">Product options</h3>

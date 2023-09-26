@@ -18,7 +18,7 @@
                 </div>
                 <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
             </div>
-            <x-button>Book Now</x-button>
+            <a href="{{route('view-service', ['slug' => $service->slug])}}"><x-button>Book Now</x-button></a>
         </div>
     </div>
 </div>
