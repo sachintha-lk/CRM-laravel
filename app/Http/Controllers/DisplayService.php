@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserRolesEnum;
+use App\Jobs\AnalyticsJob;
 use Illuminate\Http\Request;
 use App\Models\Service;
 
@@ -19,9 +20,10 @@ class DisplayService extends Controller
     // show single service page
     public function show($slug)
     {
+
         $service = Service::where('slug', $slug)->with('category')->firstOrFail();
 
-
+        $views = null;
 
         if( !auth()->check()  || auth()->user()->role->id ==  UserRolesEnum::Customer->value ) {
             if ($service->is_hidden) {
@@ -29,19 +31,20 @@ class DisplayService extends Controller
             }
 
             // make a new hit using a job
-            resolve('AnalyticsSingleton')->makeHit(
+            AnalyticsJob::dispatch(
                 class_basename($service),
                 $service->id,
                 'view',
-                auth()->id()
             );
+
+        } else {
+            // get the views for this service
+            $views = $service->hits()->where('analytic_data_type', 'view')->count();
+
+
         }
 
 
-
-
-        // make a new hit using a job
-
-        return view('web.view-service', compact('service'));
+        return view('web.view-service', compact('service'), compact('views'));
     }
 }

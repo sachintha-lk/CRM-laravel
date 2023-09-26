@@ -35,6 +35,18 @@
                     <p class="text-2xl text-gray-900">LKR {{ number_format($service->price, 2, '.', ',') }}
                     </p>
 
+                    @if(Auth::user())
+                    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+
+                    <div class="bg-gray-100 px-3 py-2 my-2 ">
+                        <span class="font-medium"> Analytics insights </span>
+                        <div>
+                            Views: {{ $views }}
+                        </div>
+                    </div>
+                    @endif
+                    @endif
+
                     <!-- Reviews -->
 {{--                    <div class="mt-6">--}}
 {{--                        <h4 class="sr-only">Reviews</h4>--}}
