@@ -411,12 +411,26 @@
                     <!-- Product grid -->
                     <div class="lg:col-span-3 flex flex-col flex-wrap gap-2  md:flex-row mt-3 pb-7 h-max bg-gray-50">
                         <!-- Your content -->
+                        <div class="w-full">
+                            <div class="flex justify-end mt-5 mx-2">
+                                {{ $services->links() }}
+                            </div>
+                        </div>
                         @foreach ($services as $service)
                             @if($service->is_hidden == false)
                                 <x-service-card :service="$service"/>
                             @endif
                         @endforeach
+                        <div class="w-full">
+                            <div class="flex justify-end mt-5 mx-2">
+                                {{ $services->links() }}
+                            </div>
+                        </div>
+
                     </div>
+
+
+
                 </div>
             </section>
         </main>

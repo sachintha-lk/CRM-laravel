@@ -11,7 +11,15 @@ use Illuminate\Database\Eloquent\Builder;
 class Service extends Model
 {
 
+//    protected $hidden = [
+//        'id',
+//        'category_id',
+//        'is_hidden',
+//        'created_at',
+//        'updated_at',
+//    ];
     protected $fillable = [
+//        'uuid',
         'name',
         'slug',
         'description',
@@ -56,6 +64,10 @@ class Service extends Model
 
     protected static function booted()
     {
+//        static::creating(function ($service) {
+//            $service->uuid = (string) \Illuminate\Support\Str::uuid();
+//        });
+
         static::created(function ($service) {
 
             // if service is hidden, don't send email
