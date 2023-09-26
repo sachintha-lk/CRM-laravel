@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\UserRolesEnum;
+use App\Jobs\SendNewServicePromoMailJob;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -50,6 +52,24 @@ class Service extends Model
     public function hits()
     {
         return $this->hasMany(ServiceHit::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($service) {
+
+            // if service is hidden, don't send email
+            if ($service->is_hidden) {
+                return;
+            }
+
+            $customers = User::where('role_id', UserRolesEnum::Customer->value)->where('status', true)->get();
+
+            foreach ($customers as $customer) {
+
+                dispatch(new SendNewServicePromoMailJob($customer, $service));
+            }
+        });
     }
 
 
