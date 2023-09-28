@@ -40,7 +40,7 @@ class ManageServices extends Component
         'newService.allergens' => 'nullable|string|min:1|max:255',
         'newService.cautions' => 'nullable|string|min:1|max:255',
         // duration should be increments of 15 minutes max 24 hours : )
-        'newService.duration_minutes' => 'nullable|integer|min:15|max:1440|multiple_of:15',
+//        'newService.duration_minutes' => 'nullable|integer|min:15|max:1440|multiple_of:15',
         'newService.benefits' => 'nullable|string|min:1|max:255',
         'newService.aftercare_tips' => 'nullable|string|min:1|max:255',
         'newService.notes' => 'nullable|string|min:1|max:255',
@@ -121,6 +121,14 @@ class ManageServices extends Component
     $this->validateOnly('newService.price');
     $this->validateOnly('newService.is_hidden');
     $this->validateOnly('newService.category_id');
+    $this->validateOnly('newService.allergens');
+    $this->validateOnly('newService.cautions');
+//    $this->validateOnly('newService.duration_minutes');
+    $this->validateOnly('newService.benefits');
+    $this->validateOnly('newService.aftercare_tips');
+    $this->validateOnly('newService.notes');
+
+
 
         if (isset($this->newService['id'])) {
 

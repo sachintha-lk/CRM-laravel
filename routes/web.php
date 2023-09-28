@@ -28,6 +28,7 @@ Route::get('/services/{slug}', [App\Http\Controllers\DisplayService::class, 'sho
 // Route::get('/services/{id}', [App\Http\Controllers\ServiceDisplay::class, 'show'])->name('services.show');
 Route::get('/deals', [App\Http\Controllers\DisplayDeal::class, 'index'])->name('deals');
 
+
 // Users needs to be logged in for these routes
 Route::middleware([
     'auth:sanctum',
@@ -66,6 +67,39 @@ Route::middleware([
             Route::get('managecategories/create', function () {
                 return view('dashboard.manage-categories.index');
             })->name('managecategories.create');
+        });
+
+        Route::middleware([
+            'validateRole:Customer'
+        ])->group(function () {
+
+            // Get the cart of the user that is not paid
+            Route::get('cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+
+            // Add a service to the cart
+            Route::post('cart', [App\Http\Controllers\CartController::class, 'store'])->name('cart.store');
+
+            // Remove item from cart
+            Route::delete('cart/item/{cart_service_id}', [App\Http\Controllers\CartController::class, 'removeItem'])->name('cart.remove-item');
+
+            // Remove a service from the cart
+            Route::delete('cart/{id}', [App\Http\Controllers\CartController::class, 'destroy'])->name('cart.destroy');
+
+            // Checkout the cart
+            Route::post('cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
+
+            // Get the appointments of the user
+//            Route::get('appointments', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointments');
+//
+//            // View an appointment
+//            Route::get('appointments/{appointment_code}', [App\Http\Controllers\AppointmentController::class, 'show'])->name('appointments.show');
+//
+//            // Cancel an appointment
+//            Route::delete('appointments/{appointment_code}', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name('appointments.destroy');
+
+
+
+
         });
     });
 });

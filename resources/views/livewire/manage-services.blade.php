@@ -186,20 +186,20 @@
                             </select>
                         </div>
 
-                        <div>
-                            <label for="duration_minutes" class="block text-sm font-medium text-gray-700">Duration</label>
+{{--                        <div>--}}
+{{--                            <label for="duration_minutes" class="block text-sm font-medium text-gray-700">Duration</label>--}}
 
-                            <select wire:model="newService.duration_minutes" id="duration_minutes" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+{{--                            <select wire:model="newService.duration_minutes" id="duration_minutes" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">--}}
 
-                                    <option disabled selected value="">Select Duration</option>
-                                    @for ($hours = 0; $hours <= 3; $hours++)
-                                        @for ($minutes = 15; $minutes <= 45; $minutes += 15)
-                                            <option value="{{ ($hours * 60) + $minutes }}">{{ $hours > 0 ? $hours . 'h ' : '' }}{{ $minutes }} min</option>
-                                        @endfor
-                                    @endfor
-                                @error('newService.duration_minutes') <span class="text-red-500">{{ $message }}</span>@enderror
-                            </select>
-                        </div>
+{{--                                    <option disabled selected value="">Select Duration</option>--}}
+{{--                                    @for ($hours = 0; $hours <= 3; $hours++)--}}
+{{--                                        @for ($minutes = 15; $minutes <= 45; $minutes += 15)--}}
+{{--                                            <option value="{{ ($hours * 60) + $minutes }}">{{ $hours > 0 ? $hours . 'h ' : '' }}{{ $minutes }} min</option>--}}
+{{--                                        @endfor--}}
+{{--                                    @endfor--}}
+{{--                                @error('newService.duration_minutes') <span class="text-red-500">{{ $message }}</span>@enderror--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
                     </div>
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                     <div>

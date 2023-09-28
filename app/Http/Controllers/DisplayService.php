@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserRolesEnum;
 use App\Jobs\AnalyticsJob;
+use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 use App\Models\Service;
 
@@ -44,7 +45,10 @@ class DisplayService extends Controller
 
         }
 
-
-        return view('web.view-service', compact('service'), compact('views'));
+        return view('web.view-service', [
+            'service' => $service,
+            'views' => $views,
+//            'timeSlots' => $timeSlots,
+        ]);
     }
 }

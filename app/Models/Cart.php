@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     protected $fillable = [
+        'uuid',
         'user_id',
         'is_paid',
         'is_cancelled',
@@ -24,7 +25,17 @@ class Cart extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class)->withPivot('service_start_date_time', 'service_end_date_time');
+        return $this
+            ->belongsToMany(Service::class)
+            ->withPivot('id','time_slot_id','date', 'start_time', 'end_time', 'price');
+    }
+
+
+    protected static function booted()
+    {
+        static::creating(function ($cart) {
+            $cart->uuid = \Illuminate\Support\Str::uuid();
+        });
     }
 
 }

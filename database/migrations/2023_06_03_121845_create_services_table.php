@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('benefits')->nullable();
             $table->string('aftercare_tips')->nullable();
             $table->string('cautions')->nullable();
-            $table->integer('duration_minutes')->default(15)->nullable();
+//            $table->integer('duration_minutes')->default(15)->nullable();
             $table->foreignId('category_id')->nullable()->index();
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();

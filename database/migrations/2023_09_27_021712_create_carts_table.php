@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->foreignId('user_id')->constrained();
             $table->boolean('is_paid')->default(false);
             $table->boolean('is_cancelled')->default(false);            // is abandoned
@@ -18,11 +19,14 @@ return new class extends Migration {
         });
 
         // pivot table
-        Schema::create('cart_services', function (Blueprint $table) {
+        Schema::create('cart_service', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('cart_id')->constrained();
             $table->foreignId('service_id')->constrained();
-            $table->dateTime('service_start_date_time');
-            $table->dateTime('service_end_date_time');
+            $table->foreignId('time_slot_id')->constrained();
+            $table->date('date');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->double('price', 10, 2)->default(0);
             $table->timestamps();
         });

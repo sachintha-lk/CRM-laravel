@@ -14,8 +14,11 @@ return new class extends Migration {
             $table->foreignId('cart_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('service_id')->constrained();
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->date('date');
+            $table->foreignId('time_slot_id')->constrained();
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->double('total', 10, 2)->default(0);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

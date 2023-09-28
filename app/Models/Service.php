@@ -30,9 +30,15 @@ class Service extends Model
         'benefits',
         'aftercare_tips',
         'cautions',
-        'duration_minutes',
+//        'duration_minutes',
         'category_id',
         'is_hidden',
+    ];
+
+    protected $casts = [
+        'is_hidden' => 'boolean',
+        'start_time' => 'time',
+        'end_time' => 'time',
     ];
 
     // is visible
@@ -62,6 +68,11 @@ class Service extends Model
         return $this->hasMany(ServiceHit::class);
     }
 
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
     protected static function booted()
     {
 //        static::creating(function ($service) {
@@ -83,6 +94,7 @@ class Service extends Model
             }
         });
     }
+
 
 
 }
