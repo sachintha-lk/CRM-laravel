@@ -21,9 +21,31 @@ class Appointment extends Model
     ];
 
     protected $casts = [
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
+        'start_time' => 'string',  // as string cuz we get it from the time slot
+        'end_time' => 'string',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    public function timeSlot()
+    {
+        return $this->belongsTo(TimeSlot::class);
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
+
+
 
     static function boot()
     {

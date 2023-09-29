@@ -46,6 +46,11 @@ Route::middleware([
             Route::resource('manageusers', App\Http\Controllers\UserController::class)->name('index', 'manageusers');
             Route::put('manageusers/{id}/suspend', [App\Http\Controllers\UserSuspensionController::class, 'suspend'])->name('manageusers.suspend');
             Route::put('manageusers/{id}/activate', [App\Http\Controllers\UserSuspensionController::class, 'activate'])->name('manageusers.activate');
+
+            Route::get('managelocations', function () {
+                return view('dashboard.manage-locations.index');
+            })->name('managelocations');
+
         });
 
         // middlleware to give access only for admin and employee
@@ -67,6 +72,10 @@ Route::middleware([
             Route::get('managecategories/create', function () {
                 return view('dashboard.manage-categories.index');
             })->name('managecategories.create');
+
+            Route::get('manageappointments', function () {
+                return view('dashboard.manage-appointments.index');
+            })->name('appointments');
         });
 
         Route::middleware([

@@ -62,6 +62,7 @@ class ManageServices extends Component
 
         $services = Service::when($this->search, function ($query) {
                 $query->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('slug', 'like', '%'.$this->search.'%')
                     ->orWhere('description', 'like', '%'.$this->search.'%')
                 ->orWhere('price', 'like', '%'.$this->search.'%')
                 ->orWhereHas('category', function ($query) {

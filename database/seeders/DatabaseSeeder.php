@@ -22,6 +22,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // run location seeder
+        $this->call([
+            LocationSeeder::class,
+        ]);
+
         $userroles = [
             [
                 'id' => UserRolesEnum::Customer,

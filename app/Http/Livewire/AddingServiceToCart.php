@@ -64,7 +64,9 @@ class AddingServiceToCart extends Component
     public function addToCart()
     {
 //        dd($this->selectedTimeSlot, $this->selectedDate, $this->service);
-
+        if($this->service->is_hidden = true) {
+            return redirect()->back();
+        }
 //         check if the user is logged in
         if ( !auth()->check() ) {
             return redirect()->route('login');
