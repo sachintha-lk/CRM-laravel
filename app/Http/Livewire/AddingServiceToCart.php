@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Appointment;
+use App\Models\Location;
 use App\Models\Service;
 use App\Models\TimeSlot;
 use Illuminate\Support\Facades\DB;
@@ -12,13 +13,19 @@ class AddingServiceToCart extends Component
 {
     public $service;
     public $timeSlots;
+
+    public $locations;
+
+    public $selectedLocation;
     public $selectedTimeSlot;
     public $selectedDate;
+
 
     public function mount(Service $service)
     {
         $this->service = $service;
         $this->timeSlots = TimeSlot::all();
+        $this->locations = Location::where('status', true)->get();
         $this->timeSlots->map(function ($timeSlot) {
             $timeSlot->available = true;
         });
@@ -30,11 +37,29 @@ class AddingServiceToCart extends Component
 
     // when date is selected, get the time slots
     // if there are appointments with that slot in a day, add an attribute called available
+
+    public function updatedSelectedLocation($selectedLocation)
+    {
+        $this->displayUnvailableTimeSlots();
+
+    }
+
     public function updatedSelectedDate($selectedDate)
     {
         // get the unavailable time slots
+        if ( $this->selectedLocation == null ) {
+            $this->selectedLocation = $this->locations->first()->id;
+        }
 
-        $unavailableTimeSlots = Appointment::get()->where('date', $selectedDate)->pluck('time_slot_id')->toArray();
+        $this->displayUnvailableTimeSlots();
+
+    }
+
+    private function displayUnvailableTimeSlots() {
+        $unavailableTimeSlots = Appointment::get()
+            ->where('date', $this->selectedDate)
+            ->where('location_id', $this->selectedLocation)
+            ->pluck('time_slot_id')->toArray();
 
         // check the cart of the user
         $cart = auth()->user()?->cart?->where('is_paid', false)->first();
@@ -43,7 +68,7 @@ class AddingServiceToCart extends Component
 
         if ( $cart ) {
             $inCartSameTimeDate =  $cart->services()
-                ->where('date', $selectedDate)
+                ->where('date', $this->selectedDate)
                 ->pluck('time_slot_id')->toArray();
             $unavailableTimeSlots = array_merge($unavailableTimeSlots, $inCartSameTimeDate);
 
@@ -55,7 +80,12 @@ class AddingServiceToCart extends Component
                 $timeSlot->available = true;
             } else {
                 $timeSlot->available = false;
-                $this->selectedTimeSlot = null;
+            }
+
+            if ($this->selectedTimeSlot != null) {
+                if ( in_array($this->selectedTimeSlot, $unavailableTimeSlots) ) {
+                    $this->selectedTimeSlot = null;
+                }
             }
         }
     }
@@ -64,7 +94,8 @@ class AddingServiceToCart extends Component
     public function addToCart()
     {
 //        dd($this->selectedTimeSlot, $this->selectedDate, $this->service);
-        if($this->service->is_hidden = true) {
+
+        if($this->service->is_hidden) {
             return redirect()->back();
         }
 //         check if the user is logged in
@@ -83,6 +114,7 @@ class AddingServiceToCart extends Component
         $cartItem = $cart->services()
             ->where('date', $this->selectedDate)
             ->where('time_slot_id', $this->selectedTimeSlot)
+            ->where('location_id', $this->selectedLocation)
             ->first();
 
 
@@ -93,8 +125,11 @@ class AddingServiceToCart extends Component
         }
 
         // if the user does not have a cart item with the same time
-        // check if there are any appointments with the same time
-        $appointment = Appointment::where('date', $this->selectedDate)->where('time_slot_id', $this->selectedTimeSlot)->first();
+        // check if there are any appointments with the same time at the location
+        $appointment = Appointment::where('date', $this->selectedDate)
+            ->where('time_slot_id', $this->selectedTimeSlot)
+            ->where('location_id', $this->selectedLocation)
+            ->first();
 
         // if there is an appointment with the same time return an error
         if ( $appointment ) {
@@ -110,6 +145,7 @@ class AddingServiceToCart extends Component
             'date' => $this->selectedDate,
             'start_time' => $timeSlot->start_time,
             'end_time' => $timeSlot->end_time,
+            'location_id' => $this->selectedLocation,
             'price' => $this->service->price,
         ]);
 
@@ -119,7 +155,6 @@ class AddingServiceToCart extends Component
 
 //        session()->flash('success', 'Service added to the cart');
         return redirect()->route('cart');
-
 
     }
 

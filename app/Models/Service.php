@@ -72,6 +72,11 @@ class Service extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'cart_service')
+            ->withPivot('location_id');
+    }
 
     protected static function booted()
     {

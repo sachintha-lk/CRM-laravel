@@ -11,7 +11,10 @@ class CartController extends Controller
     public function index()
     {
         // get the cart of the user that is not paid
-        $cart = auth()->user()->cart()->where('is_paid', false)->first();
+        $cart = auth()->user()->cart()
+            ->where('is_paid', false)
+
+            ->first();
         return view('web.cart', compact('cart'));
 
     }
@@ -66,6 +69,7 @@ class CartController extends Controller
             $is_available = DB::table('appointments')
                 ->where('date', $service->pivot->date)
                 ->where('time_slot_id', $service->pivot->time_slot_id)
+                ->where('location_id', $service->pivot->location_id)
                 ->doesntExist();
 
             // if the time slot is not available, redirect back
@@ -85,6 +89,7 @@ class CartController extends Controller
                         'date' => $service->pivot->date,
                         'start_time' => $start_time,
                         'end_time' => $end_time,
+                        'location' => $service->pivot->location->name,
                   ]
                 );
             }
@@ -103,6 +108,7 @@ class CartController extends Controller
             $is_available = DB::table('appointments')
                 ->where('date', $service->pivot->date)
                 ->where('time_slot_id', $service->pivot->time_slot_id)
+                ->where('location_id', $service->pivot->location_id)
                 ->doesntExist();
 
             // if the time slot is not available, redirect back
@@ -118,6 +124,7 @@ class CartController extends Controller
                 'date' => $service->pivot->date,
                 'start_time' => $service->pivot->start_time,
                 'end_time' => $service->pivot->end_time,
+                'location_id' => $service->pivot->location_id,
                 'total' => $service->pivot->price,
            ]);
         });

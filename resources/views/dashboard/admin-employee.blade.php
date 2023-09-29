@@ -12,7 +12,7 @@
 
  <div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 gap-4">
 
         <div class="bg-pink-500  shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-pink-600  text-white font-medium group">
             <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
@@ -123,18 +123,27 @@
             </div>
         </div>
       </div>
-      <!-- ./Statistics Cards -->
-     <div class="grid grid-cols-2">
 
-         <div class="m-3"><h2 class="font-medium text-gray-800 text-xl mb-2">Today's Schedule</h2>
-            <x-day-schedule :date="\Carbon\Carbon::today()" />
-         </div>
+     <div class="mt-4">
+         @foreach($locations as $location)
+             <h1 class=" m-3 font-medium text-gray-800 text-2xl mb-2">{{ $location->name }}</h1>
 
-         <div class="m-3"><h2 class="font-medium text-gray-800 text-xl mb-2">Tomorrow's Schedule</h2>
-         <x-day-schedule :date="\Carbon\Carbon::today()->addDay()" />
-         </div>
+             <div class="grid md:grid-cols-2">
+                 <div class="m-3">
+                     <h2 class="font-medium text-gray-800 text-xl mb-2">Today's Schedule</h2>
+                     <x-day-schedule :date="\Carbon\Carbon::today()" :location-id="$location->id" />
+                 </div>
 
+                 <div class="m-3">
+                     <h2 class="font-medium text-gray-800 text-xl mb-2">Tomorrow's Schedule</h2>
+                     <x-day-schedule :date="\Carbon\Carbon::today()->addDay()" :location-id="$location->id"/>
+                 </div>
+
+             </div>
+         @endforeach
      </div>
+
+
 
 
 

@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->foreignId('location_id')->constrained();
             $table->double('price', 10, 2)->default(0);
             $table->timestamps();
         });

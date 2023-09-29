@@ -75,7 +75,7 @@ Route::middleware([
 
             Route::get('manageappointments', function () {
                 return view('dashboard.manage-appointments.index');
-            })->name('appointments');
+            })->name('manageappointments');
         });
 
         Route::middleware([

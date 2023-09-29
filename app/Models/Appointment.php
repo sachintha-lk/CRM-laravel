@@ -15,6 +15,7 @@ class Appointment extends Model
         'time_slot_id',
         'start_time',
         'end_time',
+        'location_id',
         'total',
         'status',
 
@@ -43,6 +44,11 @@ class Appointment extends Model
     public function cart()
     {
         return $this->belongsTo(Cart::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 
 

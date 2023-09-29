@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="bg-gray-100 py-8" x-data="{ showCheckoutConfirmation: false }">
-        <div class="container mx-auto px-4 md:w-9/12">
+        <div class="container mx-auto px-4 md:w-11/12">
             <h1 class="text-2xl font-semibold mb-4">Cart</h1>
             @if(session('unavailable_time_slots'))
 
@@ -27,6 +27,9 @@
                                 <th class="text-left font-semibold">Price</th>
                                 <th class="text-left font-semibold">Date</th>
                                 <th class="text-left font-semibold">Time Slot</th>
+                                <th class="text-left font-semibold">Location</th>
+
+
                                 <th class="text-left font-semibold"></th>
                             </tr>
                             </thead>
@@ -49,6 +52,9 @@
                                           -
                                         {{ date('g:i a', strtotime( $service->pivot->end_time)) }}
                                     </td>
+                                    <td class="py-4">
+                                        {{ $service->locations->first()->name }}
+                                    z</td>
                                     <form action="{{ route('cart.remove-item', [
                                         'cart_service_id' => $service->pivot->id,
                                         ]) }}"

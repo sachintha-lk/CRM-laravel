@@ -1,5 +1,6 @@
-<div {{ $attributes->class(['my-1']) }}>
-    <h2 class="font-medium text-gray-500 text-md mb-1">{{ $date->toDateString() }}</h2>
+<div {{ $attributes->class(['m-3']) }}>
+
+    <h2 class="font-medium text-gray-600 text-lg mb-2">{{ $date->toDateString() }}</h2>
     <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-x-scroll min-w-screen">
         <thead class="bg-gray-50">
         <tr>
@@ -28,7 +29,7 @@
                 </td>
                 <td class="max-w-xs font-medium text-gray-700 border p-2">
                     @if ($appointment)
-                        <a href="{{ route('view-service', $appointment->service->slug) }}">{{ $appointment->service->name }}</a>
+                        <a href="{{ route('manageappointments')}}?search={{ $appointment->appointment_code }}">{{ $appointment->service->name }}</a>
                     @endif
                 </td>
                 <td class="border p-2">

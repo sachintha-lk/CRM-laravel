@@ -3,6 +3,36 @@
 
     <form wire:submit.prevent="addToCart">
         <div>
+            <h4 class="text-lg font-medium text-gray-900">Select Location</h4>
+
+            <fieldset class="mt-4" x-data="{ locations: @entangle('locations')}">
+            <div class="grid grid-cols-4 gap-4" x-data="{ selectedLocation : @entangle('selectedLocation') }">
+                    @foreach($locations as $location)
+                            <label
+                                class="group relative flex items-center text-gray-800 justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase focus:outline-none sm:flex-1 cursor-pointer shadow-sm"
+                                x-bind:class="{
+                                'bg-pink-500 text-white ': selectedLocation === {{ $location->id }},
+                                'bg-gray-50 hover:bg-pink-100': selectedLocation !== {{ $location->id }}
+                            }"
+                            >
+                                <input type="radio" name="time-slot-choice"
+                                       value="{{ $location->id }}" class="sr-only"
+                                       x-on:change="selectedLocation = {{ $location->id }}"
+
+                                       aria-labelledby="time-slot-choice-{{ $location->id }}-label">
+                                <span id="time-slot-choice-{{ $location->id }}-label">
+                                {{ $location->name }}
+                            </span>
+                                <span class="pointer-events-none absolute -inset-px rounded-md"
+                                      aria-hidden="true"></span>
+                            </label>
+
+                    @endforeach
+                </div>
+
+            </fieldset>
+        </div>
+        <div>
             <h4 class="text-lg font-medium text-gray-900">Select a date</h4>
             <fieldset>
                 <input type="date" class="rounded py-2 px-4 border border-gray-300" wire:model="selectedDate"
@@ -21,7 +51,7 @@
 
                 <div class="grid grid-cols-3 gap-4" x-data="{ selectedTimeSlot : @entangle('selectedTimeSlot').defer }">
                     @foreach($timeSlots as $timeSlot)
-                        <!-- Livewire directives for radio buttons -->
+
                         @if($timeSlot->available == true)
                         <label
                             class="group relative flex items-center text-gray-800 justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase focus:outline-none sm:flex-1 cursor-pointer shadow-sm"

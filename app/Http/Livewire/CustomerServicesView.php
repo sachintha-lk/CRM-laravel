@@ -39,8 +39,10 @@ class CustomerServicesView extends Component
         $query = Service::query();
 
         if ($this->search) {
-            $query->where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('description', 'like', '%' . $this->search . '%');
+            $query->where(function ($subquery) {
+                $subquery->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%');
+            });
         }
 
         if (!in_array(0, $this->categoryFilter)) {
@@ -48,18 +50,28 @@ class CustomerServicesView extends Component
             $query->whereIn('category_id', $this->categoryFilter);
         }
 
+        // Determine whether to show category names in the URL or not
+        $showCategoryNames = count($this->categoryFilter) <= 3;
+
         $this->services = $query->orderBy($this->sortByPrice)->paginate(10);
 
         return view('livewire.customer-services-view', [
             'services' => $this->services,
             'categories' => $this->categories,
+            'showCategoryNames' => $showCategoryNames, // Pass this variable to your view
         ]);
     }
 
     public function updatedCategoryFilter()
     {
-        $this->render(); // Re-render the component
+        // If the categoryFilter changes, reset the page number to 1
+        $this->resetPage();
     }
+
+//    public function updatedCategoryFilter()
+//    {
+//        $this->render(); // Re-render the component
+//    }
 
     public function sortByMostPopular($sort)
     {

@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->foreignId('time_slot_id')->constrained();
             $table->time('start_time');
             $table->time('end_time');
+            $table->foreignId('location_id')->constrained();
             $table->double('total', 10, 2)->default(0);
             $table->boolean('status')->default(true);
             $table->timestamps();

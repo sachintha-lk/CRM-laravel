@@ -102,7 +102,17 @@
                             </li>
 
                           @endif
+                                <li>
+                                    <a href="{{ route('manageappointments') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-pink-500 pr-6
+                                {{ request()->is('dashboard/manageappointments') ? 'bg-gray-100 border-pink-500 text-gray-900 font-semibold' : '' }}
+                                ">
+                                  <span class="inline-flex justify-center items-center ml-4">
+                                    <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><title/><path d="M18,5V3a1,1,0,0,0-2,0V5H8V3A1,1,0,0,0,6,3V5H2V21H22V5Zm2,14H4V7H20Zm-7-9H11v2h2Zm4,0H15v2h2ZM9,14H7v2H9Zm4,0H11v2h2Z"/></svg>
+                                  </span>
+                                        <span class="ml-2 text-sm tracking-wide truncate">Manage Appointments</span>
 
+                                    </a>
+                                </li>
                           <li>
                             <a href="/dashboard/manageservices" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-pink-500 pr-6
                             {{ request()->is('dashboard/manageservices') ? 'bg-gray-100 border-pink-500 text-gray-900 font-semibold' : '' }}
@@ -136,7 +146,21 @@
 
                             </a>
                           </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('') }}" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-pink-500 pr-6
+                                {{ request()->is('dashboard/') ? 'bg-gray-100 border-pink-500 text-gray-900 font-semibold' : '' }}
+                                ">
+                                  <span class="inline-flex justify-center items-center ml-4">
+                                    <svg fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><title/><path d="M18,5V3a1,1,0,0,0-2,0V5H8V3A1,1,0,0,0,6,3V5H2V21H22V5Zm2,14H4V7H20Zm-7-9H11v2h2Zm4,0H15v2h2ZM9,14H7v2H9Zm4,0H11v2h2Z"/></svg>
+                                  </span>
+                                        <span class="ml-2 text-sm tracking-wide truncate">Manage Appointments</span>
+
+                                    </a>
+                                </li>
                           @endif
+
+
                         </ul>
                       </div>
                     </div>

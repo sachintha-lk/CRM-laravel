@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\UserRolesEnum;
 use App\Models\Appointment;
 use App\Models\Deal;
+use App\Models\Location;
 use App\Models\Service;
 use App\Models\TimeSlot;
 use App\Models\User;
@@ -62,6 +63,8 @@ class AdminDashboardHomeController extends Controller
 
         $timeSlots = TimeSlot::all();
 
+        $locations = Location::all();
+
 
 
 
@@ -86,6 +89,7 @@ class AdminDashboardHomeController extends Controller
             'todaysSchedule' => $todaysSchedule,
             'tomorrowsSchedule' => $tommorowsSchedule,
             'timeSlots' => $timeSlots,
+            'locations' => $locations,
 
         ]);
     }
