@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/hello', function () {
-    return response()->json(['message' => 'Hello World!'], 200);
-});
+//Route::get('/hello', function () {
+//    return response()->json(['message' => 'Hello World!'], 200);
+//});
+
+Route::get('/services', [\App\Http\Controllers\ServicesAPI::class, 'index'])->name('services.index');

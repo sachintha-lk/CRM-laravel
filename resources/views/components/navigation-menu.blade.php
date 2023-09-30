@@ -1,3 +1,6 @@
+@php
+    $userRole = Auth::User()?->role()->first()->name;
+@endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 z-50 sticky top-0">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sticky z-50">
@@ -12,34 +15,34 @@
                     @php
                         {{ $appMarkRoute = route('dashboard'); }}
                     @endphp
-                    
+
                @endif
 
-                                
+
                 <div class="shrink-0 flex items-center">
                     <a href="{{ $appMarkRoute }}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
-                                
+
 
             </div>
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-               
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
 
-                   <!-- Navigation Links for cust facing web--> 
-                   
+                   <!-- Navigation Links for cust facing web-->
+
                     <x-web.navlinks />
-               
-                    <!-- Navigation Links form pages--> 
+
+                    <!-- Navigation Links form pages-->
                     @if (isset( $navlinks))
                     {{ $navlinks }}
                     @endif
-                    
+
                     <!-- Auth Navigation Links -->
                     @auth
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -53,7 +56,7 @@
                     <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                         {{ __('Register') }}
                     </x-nav-link>
-            
+
                     @endif
                 </div>
 
@@ -127,15 +130,15 @@
                                         </svg>
                                     </button>
                                 </span>
-                        
+
                         </x-slot>
 
                         <x-slot name="content">
-                            @if(Auth::User()->role()->first()->name == 'Customer')
+                            @if($userRole == 'Customer')
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Shop') }}
                             </div>
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('cart') }}">
                                 {{ __('Cart') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
@@ -193,25 +196,25 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        
+
         <div class="pt-2 pb-3 space-y-1">
-           
+
             <x-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-      
+
             <x-responsive-nav-link href="#">
                 {{ __('Services') }}
             </x-responsive-nav-link>
-            
+
             <x-responsive-nav-link href="#">
                 {{ __('Deals') }}
             </x-responsive-nav-link>
 
-            
-        
+
+
             @auth
-            @if(Auth::User()->role()->first()->name == 'Admin')
+            @if($userRole == 'Admin')
             <x-responsive-nav-link href="{{ route('manageusers') }}" :active="request()->routeIs('manageusers')">
                 {{ __('Manage Users') }}
             </x-responsive-nav-link>
@@ -220,7 +223,7 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-                
+
             @else
             <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
                 {{ __('Login') }}
@@ -229,7 +232,7 @@
             <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                 {{ __('Register') }}
             </x-responsive-nav-link>
-            
+
             @endif
         </div>
 

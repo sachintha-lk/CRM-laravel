@@ -19,6 +19,11 @@ class ManageDeals extends Component
     public $confirmingDealAdd = false;
     public $confirmingDealEdit = false;
 
+    public $search;
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+    ];
 
     public $newDeal, $name, $description, $discount, $start_date, $end_date, $is_hidden;
 
@@ -41,7 +46,12 @@ class ManageDeals extends Component
 
     public function render()
     {
-        $deals = Deal::paginate(10);
+        $deals = Deal::when($this->search, function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%');
+            })
+            ->orderBy('start_date', 'desc')
+            ->paginate(10);
 
         return view('livewire.manage-deals', [
             'deals' => $deals,
