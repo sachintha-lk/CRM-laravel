@@ -27,49 +27,79 @@ class ManageAppointments extends Component
 
     private $timeNow;
 
+    public $selectFilter = 'upcoming'; // can be 'upcoming' , 'previous' , 'cancelled'
+
+    private $userId;
+
     protected $rules = [
 //        "appointment.name" => "required|string|max:255",
 
     ];
 
-    public function mount()
-    {
+    public function mount($userId = null, $selectFilter = 'upcoming') {
+
+       if (auth()->user()->role->name == "Customer") {
+            $this->userId = auth()->user()->id;
+        } else if (auth()->user()->role->name == ("Employee" || "Admin")) {
+           $this->userId = $userId;
+        }
+        $selectFilter ? $this->selectFilter = $selectFilter : $this->selectFilter = 'upcoming';
+
         $this->timeNow = Carbon::now();
     }
 
     public function render()
     {
-        $this->appointments = Appointment::when($this->search, function ($query) {
-            $query
-                ->where('date', 'like', '%' . $this->search . '%')
-                ->orWhere('appointment_code', 'like', '%' . $this->search . '%')
-                ->orWhere('start_time', 'like', '%' . $this->search . '%')
-                ->orWhere('end_time', 'like', '%' . $this->search . '%')
-                ->orWhere('status', 'like', '%' . $this->search . '%')
-                ->orWhere('user_id', 'like', '%' . $this->search . '%')
-                ->orWhere('service_id', 'like', '%' . $this->search . '%')
-                ->orWhere('time_slot_id', 'like', '%' . $this->search . '%')
-                ->orWhere('location_id', 'like', '%' . $this->search . '%')            ;
+        $query = Appointment::with('timeSlot', 'user', 'service', 'location')
+            ->where('status', 1);
 
-        })
-            ->with('timeSlot', 'user', 'service', 'location')
-            ->whereDate('date', '>=', Carbon::today())
-            ->orWhereHas('user', function ($userQuery) {
+        if ($this->search) {
+            $query->where(function ($subQuery) {
+                $subQuery
+                    ->where('date', 'like', '%' . $this->search . '%')
+                    ->orWhere('appointment_code', 'like', '%' . $this->search . '%')
+                    ->orWhere('start_time', 'like', '%' . $this->search . '%')
+                    ->orWhere('end_time', 'like', '%' . $this->search . '%')
+                    ->orWhere('status', 'like', '%' . $this->search . '%')
+                    ->orWhere('service_id', 'like', '%' . $this->search . '%')
+                    ->orWhere('time_slot_id', 'like', '%' . $this->search . '%')
+                    ->orWhere('location_id', 'like', '%' . $this->search . '%');
+            });
+
+            $query->orWhereHas('user', function ($userQuery) {
                 $userQuery->where('name', 'like', '%' . $this->search . '%')
-                        ->orWhere('email', 'like', '%' . $this->search . '%')
-                        ->orWhere('phone_number', 'like', '%' . $this->search . '%');
-            })
-            ->orWhereHas('service', function ($userQuery) {
-                $userQuery->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('email', 'like', '%' . $this->search . '%')
+                    ->orWhere('phone_number', 'like', '%' . $this->search . '%');
+            });
+
+            $query->orWhereHas('service', function ($serviceQuery) {
+                $serviceQuery->where('name', 'like', '%' . $this->search . '%')
                     ->orWhere('description', 'like', '%' . $this->search . '%')
                     ->orWhere('category_id', 'like', '%' . $this->search . '%');
-            })
-            ->orWhereHas('location', function ($userQuery) {
-                $userQuery->where('name', 'like', '%' . $this->search . '%')
+            });
+
+            $query->orWhereHas('location', function ($locationQuery) {
+                $locationQuery->where('name', 'like', '%' . $this->search . '%')
                     ->orWhere('address', 'like', '%' . $this->search . '%')
                     ->orWhere('telephone_number', 'like', '%' . $this->search . '%');
-            })
-            ->where('status' , '==', 1)
+            });
+        }
+
+
+        if ($this->userId) {
+            $query->where('user_id', $this->userId);
+        }
+
+        if ($this->selectFilter === 'previous') {
+            $query->whereDate('date', '<', Carbon::today())->where('status', 1);
+        } else if ($this->selectFilter === 'upcoming') {
+            $query->whereDate('date', '>=', Carbon::today())->where('status', 1);
+        } else if ($this->selectFilter === 'cancelled') {
+            $query->where('status', 0);
+        }
+
+
+        $this->appointments = $query
             ->orderBy('date')
             ->orderBy('start_time')
             ->paginate(10);
@@ -78,6 +108,7 @@ class ManageAppointments extends Component
             'appointments' => $this->appointments,
         ]);
     }
+
 
 
 

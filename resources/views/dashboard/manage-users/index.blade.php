@@ -7,7 +7,7 @@
     </x-slot>
     <div class="ml-5">
       <x-button>
-        <a href="{{ route('manageusers.create') }}">Add User</a>
+        <a href="{{ route('users.create') }}">Add User</a>
       </x-button>
     </div>
     <div x-data="{showModal:false}">
@@ -35,7 +35,7 @@
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Role</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Actions</th>
-                    <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+{{--                    <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>--}}
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 border-t border-gray-100">
@@ -103,6 +103,10 @@
 
                                     @endif
                                 @endif
+
+                                    @if($user->role()->first()->name == 'Customer')
+                                        <a href="{{ route('users.show', $user->id) }}" class="bg-blue-50 p-1 px-2 rounded-md text-blue-600 hover:text-blue-900">View</a>
+                                    @endif
 
                             </div>
                         </td>

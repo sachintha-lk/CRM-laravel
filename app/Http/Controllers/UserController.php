@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserRolesEnum;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
@@ -92,9 +93,15 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+
+        // find the appointments of the user
+        $appointments = Appointment::where('user_id', $user->id)
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(10);
+
+        return view('dashboard.manage-users.show-user', compact('user', 'appointments'));
     }
 
     /**

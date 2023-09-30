@@ -1,3 +1,6 @@
 <x-dashboard>
-    <livewire:manage-appointments />
+
+    <livewire:manage-appointments :select-filter="'upcoming'" />
+
+
 </x-dashboard>
