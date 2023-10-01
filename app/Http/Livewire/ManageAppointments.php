@@ -50,9 +50,7 @@ class ManageAppointments extends Component
 
     public function render()
     {
-        $query = Appointment::with('timeSlot', 'user', 'service', 'location')
-            ->where('status', 1);
-
+        $query = Appointment::with('timeSlot', 'user', 'service', 'location');
         if ($this->search) {
             $query->where(function ($subQuery) {
                 $subQuery
@@ -87,13 +85,16 @@ class ManageAppointments extends Component
 
 
         if ($this->userId) {
+
             $query->where('user_id', $this->userId);
         }
-
+//        dd($this->selectFilter);
         if ($this->selectFilter === 'previous') {
             $query->whereDate('date', '<', Carbon::today())->where('status', 1);
+
         } else if ($this->selectFilter === 'upcoming') {
             $query->whereDate('date', '>=', Carbon::today())->where('status', 1);
+
         } else if ($this->selectFilter === 'cancelled') {
             $query->where('status', 0);
         }
@@ -103,6 +104,7 @@ class ManageAppointments extends Component
             ->orderBy('date')
             ->orderBy('start_time')
             ->paginate(10);
+//        dd($this->appointments);
 
         return view('livewire.manage-appointments', [
             'appointments' => $this->appointments,
@@ -137,17 +139,20 @@ class ManageAppointments extends Component
 //        $this->appointment = null;
 //    }
 
-    public function cancelAppointment(Appointment $appointmentId) {
-        if (auth()->user()->id == $this->appointment->user_id ||
-            auth()->user()->role()->name ==
-            (UserRolesEnum::Employee->value || UserRolesEnum::Admin->value))
+    public function cancelAppointment(Appointment $appointment)
+    {
+        $this->appointment = $appointment;
 
-        $this->appointment = $appointmentId;
-        $this->appointment->status = 0;
+
+        if (auth()->user()->id == $this->appointment->user->id
+            || auth()->user()->role->name == (UserRolesEnum::Employee->name || UserRolesEnum::Admin->name)) {
+
+            $this->appointment->status = 0;
 //        $this->appointment->cancelled_by = auth()->user()->id;
-        // TODO add reason
-        $this->appointment->save();
-        $this->confirmingAppointmentCancellation = false;
+            // TODO add reason
+            $this->appointment->save();
+            $this->confirmingAppointmentCancellation = false;
+        }
     }
 
 //    public function confirmAppointmentAdd() {

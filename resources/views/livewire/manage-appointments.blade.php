@@ -61,11 +61,11 @@
                     <th scope="col" class="px-4 py-4 font-medium text-gray-900">Date</th>
                     <th scope="col" class="px-4 py-4 font-medium text-gray-900">Time Slot</th>
                     <th scope="col" class="px-4 py-4 font-medium text-gray-900">Location</th>
-                    @if(auth()->user()->role == 'Customer')
+                    @if(auth()->user()->role->name == 'Customer')
                         <th scope="col" class="px-4 py-4 font-medium text-gray-900">Address</th>
                         <th scope="col" class="px-4 py-4 font-medium text-gray-900">Contact No</th>
 
-                    @elseif (auth()->user()->role == 'Admin' || auth()->user()->role == 'Employee')
+                    @elseif (auth()->user()->role->name  == 'Admin' || auth()->user()->role->name  == 'Employee')
 
                     <th scope="col" class="px-4 py-4 font-medium text-gray-900">Customer</th>
                         <th scope="col" class="px-4 py-4 font-medium text-gray-900">Contact No</th>
@@ -89,10 +89,12 @@
                         <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->date}}</td>
                         <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->timeSlot->start_time }} - {{  $appointment->timeSlot->end_time }}</td>
                         <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->location->name}}</td>
-                        @if(auth()->user()->role == 'Customer')
+
+                        @if(auth()->user()->role->name == 'Customer')
                             <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->location->address}}</td>
                             <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->location->telephone_number}}</td>
-                        @elseif (auth()->user()->role == 'Admin' || auth()->user()->role == 'Employee')
+
+                        @elseif (auth()->user()->role->name == 'Admin' || auth()->user()->role->name == 'Employee')
                             <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->user->name}}</td>
                             <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->user->phone_number}}</td>
                             <td class="px-6 py-4 max-w-xs font-medium text-gray-700">{{ $appointment->user->email}}</td>

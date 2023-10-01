@@ -3,7 +3,7 @@
     {{ route('home') }}
   </x-slot>
 
- 
+
     <div class="relative">
         {{-- <img class="w-full" src="{{ asset('images\banner-salon.png') }}" alt="Banner image"> --}}
         {{-- <img class="max-h-fit w-full" src="{{ asset('images\salon1.png') }}" alt="Banner image"> --}}
@@ -33,12 +33,12 @@ class="relative bg-cover bg-center bg-no-repeat " style="background-image: url({
 
     <div class="mt-8 flex flex-wrap gap-4 text-center">
       <a
-        href="#"
+        href="{{route('services')}}"
         class="block w-full rounded bg-pink-500 px-12 py-3 text-lg font-medium text-white shadow hover:bg-pink-700 focus:outline-none focus:ring active:bg-pink-500 sm:w-auto"
       >
 Book Now      </a>
 <a
-          href="#"
+          href="{{route('services')}}"
           class="block w-full rounded bg-white px-12 py-3 text-lg font-medium text-pink-500 shadow hover:text-pink-600 focus:outline-none focus:ring-offset-pink-400 active:text-pink-500 sm:w-auto"
         >
           Browse Services
@@ -46,7 +46,7 @@ Book Now      </a>
 
 
     </div>
-    
+
   </div>
 </div>
 </section>
@@ -59,7 +59,7 @@ Book Now      </a>
     <div class="container flex gap-10 p-10 pt-3 justify-center mx-auto">
       <a href="#" class="text-center gap-2 duration-300 hover:scale-105">
           <img class="w-60 rounded-xl" src="{{ asset('images/hair.jpg')}}" alt="">
-          <span class="text-pink-500 text-2xl">Hair</span>   
+          <span class="text-pink-500 text-2xl">Hair</span>
       </a>
       <a href="#" class="text-center gap-2 duration-300 hover:scale-105">
         <img class="w-60 rounded-xl" src="{{ asset('images/nails.jpg')}}"  alt="">
@@ -89,13 +89,13 @@ Book Now      </a>
         </div>
 
         <div class="flex flex-col md:flex-row mt-3 pb-7 h-max">
-         
+
           <div class="mx-auto w-80 pb-20 transform overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
             <img class="h-48 w-full object-cover object-center" src="{{ asset('images/hair-cut.jpg')}}" alt="Product Image" />
             <div class="p-4">
               <h2 class="mb-2 text-lg font-medium  text-gray-900">Hair Cut</h2>
               <p class="mb-2 text-base text-gray-700">Types of hair cuts available: Layered, Bangs, Pixie cut.</p>
-              
+
               <div class="fixed pt-9 bottom-2 w-4/5">
                 <div class="flex items-center mb-1">
                   <div>
@@ -103,19 +103,19 @@ Book Now      </a>
                   <p class="text-sm  font-medium text-gray-500 line-through">LKR 4,000.00</p>
                   </div>
                   <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
-                </div>                
+                </div>
                 <x-button>Book Now</x-button>
               </div>
             </div>
           </div>
 
-      
+
            <div class="mx-auto w-80 pb-20 transform overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
             <img class="h-48 w-full object-cover object-center" src="{{ asset('images/hair-coloring.jpg')}}" alt="Product Image" />
             <div class="p-4">
               <h2 class="mb-2 text-lg font-medium  text-gray-900">Hair Coloring</h2>
               <p class="mb-2 text-base text-gray-700">Get your hair colored by our professional hair stylists.</p>
-              
+
               <div class="fixed pt-9 bottom-2 w-4/5">
                 <div class="flex items-center mb-1">
                   <div>
@@ -134,7 +134,7 @@ Book Now      </a>
             <div class="p-4">
               <h2 class="mb-2 text-lg font-medium  text-gray-900">Nail Coloring</h2>
               <p class="mb-2 text-base text-gray-700">Keep those fingernails stylish</p>
-                
+
               <div class="fixed pt-9 bottom-2 w-4/5">
                 <div class="flex items-center mb-1">
                   <div>
@@ -151,13 +151,13 @@ Book Now      </a>
       </div>
 
       <div class="flex justify-end mx-auto pb-5 gap-3 md:w-3/4">
-                     
+
         <x-secondary-button>View price list </x-secondary-button>
         <a href="#" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">
           View All Services
         </a>
       </div>
-{{--       
+{{--
       <div class="m-8 text-center w-2"> --}}
         {{-- <x-button>View all services</x-button>   --}}
         {{-- <a
@@ -166,10 +166,10 @@ Book Now      </a>
         >
   Browse Services    </a> --}}
 
-  
+
 
     </section>
-    
+
 <section class=" w-3/4 p-3 mx-auto pt-5">
 <div>
   <div class="text-center text-4xl font-semibold text-pink-500 m-2">Offers</div>
@@ -185,7 +185,7 @@ Book Now      </a>
         <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
     </a>
   </div>
-  
+
   <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
     <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">12% Off for Promo Code: HAIR2023</h5>
@@ -196,7 +196,7 @@ Book Now      </a>
         <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
     </a>
   </div>
-  
+
   <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
     <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">15% Off for Frimi</h5>
@@ -281,7 +281,7 @@ Book Now      </a>
             Here are the testimonials from our customers who have visited our salon.
           </p>
         </div>
-    
+
         <div class="grid gap-6 text-center p-6 md:grid-cols-3 lg:gap-12">
           <div class="mb-12 md:mb-0">
             <div class="mb-6 flex justify-center">
@@ -307,7 +307,7 @@ Book Now      </a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-yellow-500">
                   <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"></path>
                 </svg>
-              </li> 
+              </li>
               <li>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-yellow-500">
                   <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"></path>
@@ -411,7 +411,7 @@ Book Now      </a>
           </div>
         </div>
       </div>
-      
+
     </section>
 
 
@@ -427,14 +427,14 @@ Book Now      </a>
         </div>
         <div class="flex items-center justify-center">
           <a class="inline-block px-6 py-2.5 bg-white text-gray-700 font-semibold text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-100 hover:shadow-lg focus:bg-gray-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-200 active:shadow-lg transition duration-150 ease-in-out mr-4" href="#" role="button" data-mdb-ripple="true" data-mdb-ripple-color="light">Claim offer</a>
- 
+
 
           <div class="text-white" data-bs-dismiss="alert" aria-label="Close" id="offer-banner-close">
             <svg class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
           </div>
         </div>
       </div>
-  
+
     </section>
     <!-- Footer container -->
 <footer
@@ -466,7 +466,7 @@ class="bg-pink-500 text-center text-neutral-100 lg:text-left">
           d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
       </svg>
     </a>
-    
+
     <a href="#!" class="mr-6 text-neutral-600 dark:text-neutral-200">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -477,8 +477,8 @@ class="bg-pink-500 text-center text-neutral-100 lg:text-left">
           d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
       </svg>
     </a>
-    
-  
+
+
   </div>
 </div>
 
@@ -487,7 +487,7 @@ class="bg-pink-500 text-center text-neutral-100 lg:text-left">
   <div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
     <!-- Tailwind Elements section -->
     <!-- Contact section -->
-    
+
     <div>
       <h6
         class="mb-4 flex items-center justify-center font-semibold text-xl md:justify-start">
@@ -535,7 +535,7 @@ class="bg-pink-500 text-center text-neutral-100 lg:text-left">
         </svg>
         011 554 5521
       </p>
-     
+
     </div>
 
     <!-- Services section -->
@@ -569,7 +569,7 @@ class="bg-pink-500 text-center text-neutral-100 lg:text-left">
     <div class="">
       <h6
         class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-       Promotions 
+       Promotions
       </h6>
       <p class="mb-4">
         <a href="#!" class="text-neutral-600 dark:text-neutral-200"
@@ -586,9 +586,9 @@ class="bg-pink-500 text-center text-neutral-100 lg:text-left">
           >Loyalty teirs</a
         >
       </p>
-     
+
     </div>
-    
+
   </div>
 </div>
 
