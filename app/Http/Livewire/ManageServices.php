@@ -49,7 +49,7 @@ class ManageServices extends Component
     // check if image is an instance of UploadedFile
     if ($this->image instanceof \Illuminate\Http\UploadedFile) {
 
-        $rules['image'] = 'required|image|mimes:jpg,jpeg,png,svg,gif|max:204800';
+        $rules['image'] = 'required|image|mimes:jpg,jpeg,png,svg,gif,webp|max:204800';
     } else {
         $rules['image'] = 'required|string|min:1|max:255';
     }

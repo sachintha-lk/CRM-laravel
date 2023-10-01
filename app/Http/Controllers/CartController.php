@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendAppointmentConfirmationMailJob;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Collection\Collection;
@@ -131,6 +132,13 @@ class CartController extends Controller
 
         $cart->is_paid = true;
         $cart->save();
+
+        // get the appointments of the cart
+        $appointments = Appointment::where('cart_id', $cart->id)->get();
+        $customer = auth()->user();
+        foreach ($appointments as $appointment) {
+            SendAppointmentConfirmationMailJob::dispatch( $customer , $appointment);
+        }
 
         return redirect()->route('dashboard')->with('success', 'Your appointment has been booked successfully');
 

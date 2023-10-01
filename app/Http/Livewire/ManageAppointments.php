@@ -50,9 +50,7 @@ class ManageAppointments extends Component
 
     public function render()
     {
-        $query = Appointment::with('timeSlot', 'user', 'service', 'location')
-            ->where('status', 1);
-
+        $query = Appointment::with('timeSlot', 'user', 'service', 'location');
         if ($this->search) {
             $query->where(function ($subQuery) {
                 $subQuery
@@ -87,6 +85,7 @@ class ManageAppointments extends Component
 
 
         if ($this->userId) {
+
             $query->where('user_id', $this->userId);
         }
 
@@ -103,6 +102,7 @@ class ManageAppointments extends Component
             ->orderBy('date')
             ->orderBy('start_time')
             ->paginate(10);
+//        dd($this->appointments);
 
         return view('livewire.manage-appointments', [
             'appointments' => $this->appointments,
@@ -137,12 +137,15 @@ class ManageAppointments extends Component
 //        $this->appointment = null;
 //    }
 
-    public function cancelAppointment(Appointment $appointmentId) {
-        if (auth()->user()->id == $this->appointment->user_id ||
-            auth()->user()->role()->name ==
-            (UserRolesEnum::Employee->value || UserRolesEnum::Admin->value))
+    public function cancelAppointment(Appointment $appointment) {
+        $this->appointment = $appointment;
 
-        $this->appointment = $appointmentId;
+        if (auth()->user()->id
+            ==
+            $this->appointment->user->id ||
+            auth()->user()->role->name ==
+            (UserRolesEnum::Employee->name || UserRolesEnum::Admin->name))
+
         $this->appointment->status = 0;
 //        $this->appointment->cancelled_by = auth()->user()->id;
         // TODO add reason
