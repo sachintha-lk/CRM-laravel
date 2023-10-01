@@ -33,12 +33,12 @@ class="relative bg-cover bg-center bg-no-repeat " style="background-image: url({
 
     <div class="mt-8 flex flex-wrap gap-4 text-center">
       <a
-        href="#"
+        href="{{route('services')}}"
         class="block w-full rounded bg-pink-500 px-12 py-3 text-lg font-medium text-white shadow hover:bg-pink-700 focus:outline-none focus:ring active:bg-pink-500 sm:w-auto"
       >
 Book Now      </a>
 <a
-          href="#"
+          href="{{route('services')}}"
           class="block w-full rounded bg-white px-12 py-3 text-lg font-medium text-pink-500 shadow hover:text-pink-600 focus:outline-none focus:ring-offset-pink-400 active:text-pink-500 sm:w-auto"
         >
           Browse Services
