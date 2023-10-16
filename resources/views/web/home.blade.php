@@ -104,7 +104,9 @@ Book Now      </a>
                   </div>
                   <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
                 </div>
-                <x-button>Book Now</x-button>
+                  <a href="{{route('services')}}">
+                      <x-button>Book Now</x-button>
+                  </a>
               </div>
             </div>
           </div>
@@ -124,7 +126,9 @@ Book Now      </a>
                   </div>
                   <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
                 </div>
-                <x-button>Book Now</x-button>
+                  <a href="{{route('services')}}">
+                      <x-button>Book Now</x-button>
+                  </a>
               </div>
             </div>
           </div>
@@ -143,7 +147,9 @@ Book Now      </a>
                   </div>
                   <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
                 </div>
-                <x-button>Book Now</x-button>
+                  <a href="{{route('services')}}">
+                      <x-button>Book Now</x-button>
+                  </a>
               </div>
             </div>
           </div>
@@ -153,7 +159,7 @@ Book Now      </a>
       <div class="flex justify-end mx-auto pb-5 gap-3 md:w-3/4">
 
         <x-secondary-button>View price list </x-secondary-button>
-        <a href="#" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">
+        <a href="{{route('services')}}" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">
           View All Services
         </a>
       </div>

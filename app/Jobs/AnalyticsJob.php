@@ -27,7 +27,7 @@ class AnalyticsJob implements ShouldQueue
             $this->model,
             $this->id,
             $this->analytic_type,
-            auth()->user()->id()
+            auth()->user()?->id()
         );
     }
 }
