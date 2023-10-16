@@ -93,7 +93,14 @@ There are some other details such as the price, description, image, benefits, al
 <br /><br />
 
 When a new service is created, the customers are notified by email.
-This is done using a queued job.
+This is done using a queued job. [Check out how to start the queue in laravel](#using-the-queue)
+
+<figure>
+<img src="readme-assets/screenshots/new_service_promo_queue.png">
+<figcaption align="center"><i>Queued jobs to send the new service email</i></figcaption>
+</figure>
+<br /><br />
+
 
 <figure>
 <img src="readme-assets/screenshots/new-service-email.png">
