@@ -16,9 +16,9 @@
 
 <figure>
 <img src="readme-assets/screenshots/homepage.png">
-<figcaption align="center">Home Page</figcaption>
-
+<figcaption align="center"><i>Home Page</i></figcaption>
 </figure>
+<br /><br />
 
 This project is a booking and CRM system for Salon Bliss, a fictional hair salon. 
 
@@ -46,28 +46,28 @@ For testing of the email sending, [Mailtrap](https://mailtrap.io/) was used.
 This was developed for the requirements of a Server Side Programming module.
 The assignment document is available here: [SSP2_FINAL2_CB010454.pdf](SSP2_FINAL2_CB010454.pdf)
 
-
 ## Features
 
 The following are some of the features of the project. To provide a better understanding of the features some screenshots are also provided where necessary.
 
-**Use of middleware to grant role based access to routes**
+**✅ Use of middleware to grant role based access to routes**
 
 A middleware was created to validate the role of the user and grant access to the routes. 
 When using the middleware the name of the required roles are passed seperated by a comma.
 The routes associated for the users based on the roles are grouped in the web.php file.
 
-**Location Management**
+**🏬 Location Management**
 
 The admin user can create, edit and delete locations. These locations are used when booking an appointment. 
 For the purpose of the assignment, only one appointment per time slot is possible in the system.
 
 <figure>
 <img src="readme-assets/screenshots/locations-manage.png">
-<figcaption align="center">Locations Manage Page</figcaption>
+<figcaption align="center"><i>Locations Manage Page</i></figcaption>
 </figure>
+<br /><br />
 
-**User management**
+**👤User management**
 
 The management of the customers and employees is done by the admin user. 
 Admin user can create, edit and delete employees. There is an option that allows the admin to suspend a user.
@@ -75,11 +75,12 @@ Admin user can create, edit and delete employees. There is an option that allows
 
 <figure>
 <img src="readme-assets/screenshots/manage-users.png">
-<figcaption align="center">Manage Users</figcaption>
+<figcaption align="center"><i>Manage Users</i></figcaption>
 </figure>
+<br /><br />
 
 
-**Categories and Service management**
+**💇 Categories and Service management**
 
 Admin and employee users can create, edit and delete service categories. 
 Admin and employee users can create, edit and delete services. When creating a service a category must be selected. 
@@ -87,18 +88,20 @@ There are some other details such as the price, description, image, benefits, al
 
 <figure>
 <img src="readme-assets/screenshots/manage-services.png">
-<figcaption align="center">Manage Services</figcaption>
+<figcaption align="center"><i>Manage Services</i></figcaption>
 </figure>
+<br /><br />
 
 When a new service is created, the customers are notified by email.
 This is done using a queued job.
 
 <figure>
 <img src="readme-assets/screenshots/new-service-email.png">
-<figcaption align="center">New service email</figcaption>
+<figcaption align="center"><i>New service email</i></figcaption>
 </figure>
+<br /><br />
 
-**Booking an appointment**
+**🆕 Booking an appointment**
 
 The appointment booking is done by first adding to the cart: the customer selects the location of the
 booking, and the date. The system then checks for availability and disables and grey out the timeslots that are
@@ -106,8 +109,9 @@ not available. Then the customer can select a time slot and add it to the cart.
 
 <figure>
 <img src="readme-assets/screenshots/services-page.png">
-<figcaption align="center">Services</figcaption>
+<figcaption align="center"><i>Services</i></figcaption>
 </figure>
+<br /><br />
 
 The system displays the timeslots of a location that are available when the user selects the location and date.
 The system disables and greys out the unavailable time slots.
@@ -115,12 +119,13 @@ The system disables and greys out the unavailable time slots.
 _Take Note of the greyed out unavailable time slot below_
 <figure>
 <img src="readme-assets/screenshots/view-a-service.png">
-<figcaption align="center">Viewing a service - Selecting Time Slots
+<figcaption align="center"><i>Viewing a service - Selecting Time Slots</i>
 </figcaption>
 </figure>
+<br /><br />
 
 
-**Cart**
+**🛒 Cart**
 
 A cart system was created for the user to add the services to the cart. It also included creation of
 a pivot table called cart_services. The system checks if there are any booking for that time slot
@@ -128,64 +133,71 @@ before creation of the appointment at Checkout
 
 <figure>
 <img src="readme-assets/screenshots/cart.png">
-<figcaption align="center">Cart</figcaption>
+<figcaption align="center"><i>Cart</i></figcaption>
 </figure>
+<br /><br />
 
-**Appointment creation**
+**📃 Appointment creation**
 
 At checkout the appointment is created. Then an email is sent to the customer as a confirmation
 of the booking. This email is sent using a queued job. [Check out how to start the queue in laravel](#using-the-queue)
 
 <figure>
 <img src="readme-assets/screenshots/appointment_confirm_email.png">
-<figcaption align="center">Queued jobs to send the confirmation email</figcaption>
+<figcaption align="center"><i>Queued jobs to send the confirmation email</i></figcaption>
 </figure>
+<br /><br />
 
 <figure>
 <img src="readme-assets/screenshots/queued_mail_appointment_confirm_email.png">
-<figcaption align="center">Appointment Confirmation Email</figcaption>
+<figcaption align="center"><i>Appointment Confirmation Email</i></figcaption>
 </figure>
+<br /><br />
 
-**Page view hit analytics**
+**🎯 Page view hit analytics**
 
 The views of the pages is recorded using a queued job by resolving the AnalyticsSingleton
 
 <figure>
 <img src="readme-assets/screenshots/analytics_recording.png">
-<figcaption align="center">Recording Analytics using a queued job</figcaption>
+<figcaption align="center"><i>Recording Analytics using a queued job</i></figcaption>
 
 </figure>
 
-**View analytics of customer and services**
+**🎯 View analytics of customer and services**
 
 The staff can view the information related to the services such as the views, appointments, and
 revenue. This is shown when viewing a service. The staff can also view the analytics of a customer.
 
 <figure>
 <img src="readme-assets/screenshots/customer-analytics.png">
-<figcaption align="center">Customer Details including analytics such as last appointment and total spending</figcaption>
+<figcaption align="center"><i>Customer Details including analytics such as last appointment and total spending</i></figcaption>
 </figure>
+<br /><br />
 
 <figure>
 <img src="readme-assets/screenshots/service-analytics.png">
-<figcaption align="center">Analytics of a service</figcaption>
+<figcaption align="center"><i>Analytics of a service</i></figcaption>
 </figure>
+<br /><br />
 
-**Appointment management**
+**📅 Appointment management**
 
 The staff can manage appointments of all customers, a customer can manage their appointments.
 
 <figure>
 <img src="readme-assets/screenshots/manage-appointment-admin-view.png">
-<figcaption align="center">Appointment Management Page</figcaption>
+<figcaption align="center"><i>Appointment Management Page</i></figcaption>
 </figure>
+<br /><br />
 
 The customer can also see the details of the appointments that they have made.
 
 <figure>
 <img src="readme-assets/screenshots/view-appointment-customer.png">
-<figcaption align="center">Appointment Management - Customer</figcaption>
+<figcaption align="center"><i>Appointment Management - Customer</i></figcaption>
 </figure>
+<br /><br />
 
 A schedule for the current day and the day is shown for all the locations of the salon in the admin dashboard
 
@@ -193,8 +205,9 @@ A schedule for the current day and the day is shown for all the locations of the
 <img src="readme-assets/screenshots/admin-location-day-schedule.png">
 <figcaption align="center">Day schedules</figcaption>
 </figure>
+<br /><br />
 
-**API Customer CRUD and Services CRUD**
+**🧑‍💻 API Customer CRUD and Services CRUD**
 
 The system provides an API for the create, read, update and delete of a customer. 
 
@@ -335,3 +348,6 @@ For the email and page view capture to work, [the queue should be run](#using-th
 **This project was developed for an academic assignment, the project will be further developed in the future as a portfolio project**
 
 If you have any suggestions create an issue on the repository.
+
+
+![CatComputerGIF](https://github.com/sachintha-lk/CRM-laravel/assets/68807141/194f3a88-16b8-421f-9c5e-c076e56f8bdd)
