@@ -150,7 +150,7 @@ At checkout the appointment is created. Then an email is sent to the customer as
 of the booking. This email is sent using a queued job. [Check out how to start the queue in laravel](#using-the-queue)
 
 <figure>
-<img src="readme-assets/screenshots/appointment_confirm_email.png">
+<img src="readme-assets/screenshots/appointment_confirm_email_queue.png">
 <figcaption align="center"><i>Queued jobs to send the confirmation email</i></figcaption>
 </figure>
 <br /><br />
