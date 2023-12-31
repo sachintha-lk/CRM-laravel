@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/test', [App\Http\Controllers\AdminDashboardHome::class, 'index'])->name('test');
 
-Route::get('/', function () {
-    return view('web.home');
-})->name('home');
+Route::get('/', [App\Http\Controllers\HomePageController::class, 'index'])->name('home');
+
 
 Route::get('/services', [App\Http\Controllers\DisplayService::class, 'index'])->name('services');
 Route::get('/services/{slug}', [App\Http\Controllers\DisplayService::class, 'show'])->name('view-service');
