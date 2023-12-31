@@ -6,8 +6,10 @@ use App\Models\Appointment;
 use App\Models\Location;
 use App\Models\Service;
 use App\Models\TimeSlot;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class AddingServiceToCart extends Component
 {
@@ -19,7 +21,6 @@ class AddingServiceToCart extends Component
     public $selectedLocation;
     public $selectedTimeSlot;
     public $selectedDate;
-
 
     public function mount(Service $service)
     {
@@ -64,8 +65,19 @@ class AddingServiceToCart extends Component
         // check the cart of the user
         $cart = auth()->user()?->cart?->where('is_paid', false)->first();
 
-        // if the user has a cart, check the cart items
+        // if the selectedDate is today's date, then the time slots before the current time should be unavailable
+        $now = Carbon::now();
+        if ($now->toDateString() == $this->selectedDate) {
+            $slotsBeforeCurrentTime = TimeSlot::where('start_time', '<', $now->toTimeString())
+                ->pluck('id')->toArray();
 
+//            Log::info("slots before current time", $slotsBeforeCurrentTime);
+//            Log::info("unavailable time slots", $unavailableTimeSlots);
+
+            $unavailableTimeSlots = array_merge($unavailableTimeSlots, $slotsBeforeCurrentTime);
+//            Log::info("unavailable time slots after merge", $unavailableTimeSlots);
+        }
+        // if the user has a cart, check the cart items
         if ( $cart ) {
             $inCartSameTimeDate =  $cart->services()
                 ->where('date', $this->selectedDate)
@@ -73,8 +85,11 @@ class AddingServiceToCart extends Component
             $unavailableTimeSlots = array_merge($unavailableTimeSlots, $inCartSameTimeDate);
 
         }
+//        Log::info("Final unavailable time slots :", $unavailableTimeSlots);
+
 
 //        check the time slots that are not in the
+
         foreach ( $this->timeSlots as $timeSlot ) {
             if ( !in_array($timeSlot->id, $unavailableTimeSlots) ) {
                 $timeSlot->available = true;
@@ -93,8 +108,6 @@ class AddingServiceToCart extends Component
     // add the service to the cart
     public function addToCart()
     {
-//        dd($this->selectedTimeSlot, $this->selectedDate, $this->service);
-
         if($this->service->is_hidden) {
             return redirect()->back();
         }
@@ -116,7 +129,6 @@ class AddingServiceToCart extends Component
             ->where('time_slot_id', $this->selectedTimeSlot)
             ->where('location_id', $this->selectedLocation)
             ->first();
-
 
         // if the user has a cart item with the same time return an error
         if ( $cartItem ) {
@@ -153,7 +165,6 @@ class AddingServiceToCart extends Component
         $cart->total = $cart->services()->sum(DB::raw('cart_service.price'));
         $cart->save();
 
-//        session()->flash('success', 'Service added to the cart');
         return redirect()->route('cart');
 
     }

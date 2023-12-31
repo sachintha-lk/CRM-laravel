@@ -5,10 +5,13 @@
         <div>
             <h4 class="text-lg font-medium text-gray-900">Select Location</h4>
 
-            <fieldset class="mt-4" x-data="{ locations: @entangle('locations')}">
-            <div class="grid grid-cols-4 gap-4" x-data="{ selectedLocation : @entangle('selectedLocation') }">
+            <fieldset class="mt-4" x-data="{
+                locations: @entangle('locations'),
+                selectedLocation : @entangle('selectedLocation').defer
+            }">
+            <div class="grid grid-cols-4 gap-4">
                     @foreach($locations as $location)
-                            <label
+                            <label wire:key="location-{{ $location->id }}" wire
                                 class="group relative flex items-center text-gray-800 justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase focus:outline-none sm:flex-1 cursor-pointer shadow-sm"
                                 x-bind:class="{
                                 'bg-pink-500 text-white ': selectedLocation === {{ $location->id }},
@@ -35,7 +38,7 @@
         <div>
             <h4 class="text-lg font-medium text-gray-900">Select a date</h4>
             <fieldset>
-                <input type="date" class="rounded py-2 px-4 border border-gray-300" wire:model="selectedDate"
+                <input type="date" class="rounded py-2 px-4 border border-gray-300" wire:model.debounce.="selectedDate"
                        min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
                        max="{{ \Carbon\Carbon::now()->addDays(30)->format('Y-m-d') }}" required>
 
@@ -51,9 +54,10 @@
 
                 <div class="grid grid-cols-3 gap-4" x-data="{ selectedTimeSlot : @entangle('selectedTimeSlot').defer }">
                     @foreach($timeSlots as $timeSlot)
-
+                        <div wire:key="timeslot-{{ $timeSlot->id }}-element">
                         @if($timeSlot->available == true)
                         <label
+                            wire:key="timeslot-{{ $timeSlot->id }}-available"
                             class="group relative flex items-center text-gray-800 justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase focus:outline-none sm:flex-1 cursor-pointer shadow-sm"
                             x-bind:class="{
                                 'bg-pink-500 text-white ': selectedTimeSlot === {{ $timeSlot->id }},
@@ -73,9 +77,11 @@
                             <span class="pointer-events-none absolute -inset-px rounded-md"
                                   aria-hidden="true"></span>
                         </label>
+
                         @else
 
                         <label
+                            wire:key="timeslot-{{ $timeSlot->id }}-unavailable"
                             class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 cursor-not-allowed bg-gray-50 text-gray-200">
                             <input type="radio" name="time-slot-choice"
                                    value="{{ $timeSlot->id }}" disabled class="sr-only"
@@ -93,8 +99,9 @@
                                 </svg>
                             </span>
                         </label>
-                        @endif
 
+                        @endif
+                        </div>
                     @endforeach
                 </div>
             </fieldset>

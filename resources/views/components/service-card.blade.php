@@ -14,9 +14,9 @@
             <div class="flex items-center mb-1">
                 <div>
                     <p class="mr-2 text-lg font-semibold text-gray-900">LKR {{ $service->price}}</p>
-                    <p class="text-sm  font-medium text-gray-500 line-through">LKR 4,000.00</p>
+{{--                    <p class="text-sm  font-medium text-gray-500 line-through">LKR 4,000.00</p>--}}
                 </div>
-                <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
+{{--                <p class="ml-auto text-lg font-medium text-green-500">10% off</p>--}}
             </div>
             <a href="{{route('view-service', ['slug' => $service->slug])}}"><x-button>Book Now</x-button></a>
         </div>
