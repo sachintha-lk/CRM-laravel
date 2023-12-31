@@ -89,76 +89,20 @@ Book Now      </a>
         </div>
 
         <div class="flex flex-col md:flex-row mt-3 pb-7 h-max">
-
-          <div class="mx-auto w-80 pb-20 transform overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
-            <img class="h-48 w-full object-cover object-center" src="{{ asset('images/hair-cut.jpg')}}" alt="Product Image" />
-            <div class="p-4">
-              <h2 class="mb-2 text-lg font-medium  text-gray-900">Hair Cut</h2>
-              <p class="mb-2 text-base text-gray-700">Types of hair cuts available: Layered, Bangs, Pixie cut.</p>
-
-              <div class="fixed pt-9 bottom-2 w-4/5">
-                <div class="flex items-center mb-1">
-                  <div>
-                    <p class="mr-2 text-lg font-semibold text-gray-900">LKR 3,600.00</p>
-                  <p class="text-sm  font-medium text-gray-500 line-through">LKR 4,000.00</p>
-                  </div>
-                  <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
-                </div>
-                  <a href="{{route('services')}}">
-                      <x-button>Book Now</x-button>
-                  </a>
-              </div>
-            </div>
-          </div>
-
-
-           <div class="mx-auto w-80 pb-20 transform overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
-            <img class="h-48 w-full object-cover object-center" src="{{ asset('images/hair-coloring.jpg')}}" alt="Product Image" />
-            <div class="p-4">
-              <h2 class="mb-2 text-lg font-medium  text-gray-900">Hair Coloring</h2>
-              <p class="mb-2 text-base text-gray-700">Get your hair colored by our professional hair stylists.</p>
-
-              <div class="fixed pt-9 bottom-2 w-4/5">
-                <div class="flex items-center mb-1">
-                  <div>
-                    <p class="mr-2 text-lg font-semibold text-gray-900">LKR 3,600.00</p>
-                  <p class="text-sm  font-medium text-gray-500 line-through">LKR 4,000.00</p>
-                  </div>
-                  <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
-                </div>
-                  <a href="{{route('services')}}">
-                      <x-button>Book Now</x-button>
-                  </a>
-              </div>
-            </div>
-          </div>
-
-           <div class="mx-auto w-80 pb-20 transform overflow-hidden rounded-lg bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
-            <img class="h-48 w-full object-cover object-center" src="{{ asset('images/nail-coloring.jpg')}}" alt="Product Image" />
-            <div class="p-4">
-              <h2 class="mb-2 text-lg font-medium  text-gray-900">Nail Coloring</h2>
-              <p class="mb-2 text-base text-gray-700">Keep those fingernails stylish</p>
-
-              <div class="fixed pt-9 bottom-2 w-4/5">
-                <div class="flex items-center mb-1">
-                  <div>
-                    <p class="mr-2 text-lg font-semibold text-gray-900">LKR 3,600.00</p>
-                  <p class="text-sm  font-medium text-gray-500 line-through">LKR 4,000.00</p>
-                  </div>
-                  <p class="ml-auto text-lg font-medium text-green-500">10% off</p>
-                </div>
-                  <a href="{{route('services')}}">
-                      <x-button>Book Now</x-button>
-                  </a>
-              </div>
-            </div>
-          </div>
+            @if($popularServices->count() > 0)
+                @foreach ($popularServices as $service)
+                    <x-service-card :service="$service"/>
+                @endforeach
+            @else
+                <p class="mx-auto text-center block text-gray-700 md:mb-12 md:pb-0">
+                    No Services Found
+                </p>
+            @endif
         </div>
       </div>
 
       <div class="flex justify-end mx-auto pb-5 gap-3 md:w-3/4">
 
-        <x-secondary-button>View price list </x-secondary-button>
         <a href="{{route('services')}}" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">
           View All Services
         </a>
@@ -172,8 +116,6 @@ Book Now      </a>
         >
   Browse Services    </a> --}}
 
-
-
     </section>
 
 <section class=" w-3/4 p-3 mx-auto pt-5">
@@ -181,44 +123,28 @@ Book Now      </a>
   <div class="text-center text-4xl font-semibold text-pink-500 m-2">Offers</div>
 </div>
 <div class="flex gap-10 ">
-  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
-    <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">15% Off for Combank Credit Cards</h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 ">Offer Valid till 30th Of July 2023</p>
-    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 ">
-        View Offer
-        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    </a>
-  </div>
-
-  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
-    <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">12% Off for Promo Code: HAIR2023</h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 ">Offer Valid till 30th Of July 2023</p>
-    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:outline-none focus:ring-pink-300 ">
-        View Offer
-        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    </a>
-  </div>
-
-  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
-    <a href="#">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">15% Off for Frimi</h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 ">Offer Valid till 30th Of July 2023</p>
-    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:outline-none focus:ring-pink-300 ">
-        View Offer
-        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    </a>
-  </div>
-
+    @if($deals->count() > 0)
+        @foreach($deals as $deal)
+            @if($deal->is_hidden == false)
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $deal->name }}</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 ">{{ $deal->description }}</p>
+                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 ">
+                        View Offer
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+                </div>
+            @endif
+        @endforeach
+    @else
+        <p class="mx-auto text-center block text-gray-700 md:mb-12 md:pb-0">
+            No Deals Found
+        </p>
+    @endif
 </div>
-
-
     </section>
-
 
     {{-- Gallery --}}
     <section class="pt-5 pb-5">
