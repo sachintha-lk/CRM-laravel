@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+    main:
+        container_name: Serve
+        build:
+            context: .
+            dockerfile: Dockerfile
+        command: 'php artisan serve --host=0.0.0.0'
+
+#        command: >
+#            sh -c "php artisan migrate && php artisan db:seed && php artisan key:generate && php artisan serve --host=0.0.0.0"
+        volumes:
+            - .:/app
+        ports:
+            - 8000:8000
+        depends_on:
+            - db
+#            - queue
+
+    queue:
+        container_name: Queue
+        build:
+            context: .
+            dockerfile: Dockerfile
+        command: 'php artisan queue:listen'
+        depends_on:
+            - db
+
+    db:
+        platform: linux/x86_64
+        image: mysql:8.0
+        container_name: Database
+        environment:
+            MYSQL_DATABASE: "${DB_DATABASE}"
+#            MYSQL_USER: "${DB_USERNAME}"
+            MYSQL_ROOT: "root"
+            MYSQL_PASSWORD: "${DB_PASSWORD}"
+            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+
+        volumes:
+            - db:/var/lib/mysql
+        ports:
+            - 3306:3306
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: PhpMyAdmin
+        links:
+            - db
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        restart: always
+        ports:
+            - 8081:80
+
+    mailpit:
+        image: axllent/mailpit
+        container_name: MailPit
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        networks:
+            - laravel-exa
+
+networks:
+    laravel-exa:
+        driver: bridge
+
+volumes:
+    db:
+        driver: local
